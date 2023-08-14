@@ -1,6 +1,6 @@
-NAME	= ex00
+NAME	= megaphone
 
-SRC		= main.cpp
+SRC		= megaphone.cpp
 
 OBJ		= $(SRC:%.cpp=%.o)
 
@@ -28,7 +28,12 @@ fclean: clean
 
 re:	fclean all
 
-run: re
+run: all
 	./$(NAME)
 
-.PHONY: all clean fclean re run
+test: re
+	./$(NAME) "shhhhh... I think the students are asleep..."
+	./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
+	./$(NAME)
+
+.PHONY: all clean fclean re run test
