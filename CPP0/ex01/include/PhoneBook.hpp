@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 21:26:40 by andde-so          #+#    #+#             */
-/*   Updated: 2023/08/31 23:17:49 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/01 19:44:10 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ private:
 	Contact 		_contacts[_capacity];
 	size_t			_size;
 
-	void		printTable() const;
-	void		printLine(Contact contact, size_t index) const;
-	bool		read_contact_info(const std::string &label, std::string &str);
-	bool		create_contact(Contact *contact);
+	void	_display_phone_book() const;
+	void	_print_line(Contact contact, size_t index) const;
 
 public:
 	void	add();

@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.hpp                                           :+:      :+:    :+:   */
+/*   ft_stoi.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 22:19:50 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/01 20:20:41 by andde-so         ###   ########.fr       */
+/*   Created: 2023/09/01 19:48:00 by andde-so          #+#    #+#             */
+/*   Updated: 2023/09/01 20:08:38 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_HPP
-# define MAIN_HPP
+#include "main.hpp"
 
-# include <iostream>
-# include "Contact.hpp"
-# include "PhoneBook.hpp"
+bool	ft_stoi(std::string &str, int *n)
+{
+	int	i;
+	int	sign;
 
-std::string	ft_set_width(std::string str, size_t width = 10);
-bool		ft_stoi(std::string &str, int *n);
-
-#endif
+	*n = 0;
+	sign = 1;
+	i = 0;
+	while (std::isspace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i])
+	{
+		if (!std::isdigit(str[i]))
+			return (false);
+		*n = (*n * 10) + (str[i] - '0');
+		i++;
+	}
+	*n *= sign;
+	return (true);
+}

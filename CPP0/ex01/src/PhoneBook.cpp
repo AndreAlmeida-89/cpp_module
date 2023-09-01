@@ -6,78 +6,45 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 23:52:52 by andde-so          #+#    #+#             */
-/*   Updated: 2023/08/31 23:18:41 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:38:48 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-bool	PhoneBook::read_contact_info(const std::string &label, std::string &str)
-{
-	std::cout << label << ": ";
-	std::getline(std::cin, str);
-	return (str.empty() == false);
-}
-
-bool	PhoneBook::create_contact(Contact *contact)
-{
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone_number;
-	std::string	darkest_secret;
-
-	if (!read_contact_info("First name", first_name) ||
-		!read_contact_info("Last name", last_name) ||
-		!read_contact_info("Nick name", nickname) ||
-		!read_contact_info("Phone number", phone_number) ||
-		!read_contact_info("Darkest secret", darkest_secret))
-		{
-			std::cout << "Contact field can't be empty!" << std::endl;
-			return (false);
-		}
-	*contact = Contact(
-		first_name,
-		last_name,
-		nickname,
-		phone_number,
-		darkest_secret);
-	return (true);
-}
-
-void	PhoneBook::printTable() const
+void	PhoneBook::_display_phone_book() const
 {
 	const size_t width = 45;
 
 	std::cout << std::string(width, '-') << std::endl;
 	std::cout << "|"
-			  << ft_resize("INDEX") << "|"
-			  << ft_resize("FIRST NAME") << "|"
-			  << ft_resize("LAST NAME") << "|"
-			  << ft_resize("NICK NAME") << "|"
+			  << ft_set_width("INDEX") << "|"
+			  << ft_set_width("FIRST NAME") << "|"
+			  << ft_set_width("LAST NAME") << "|"
+			  << ft_set_width("NICK NAME") << "|"
 			  << std::endl;
 	std::cout << std::string(width, '-') << std::endl;
 	for (size_t i = 0; i < _size; i++)
-		printLine(_contacts[i], i);
+		_print_line(_contacts[i], i);
 	std::cout << std::string(width, '-') << std::endl;
 }
 
-void	PhoneBook::printLine(Contact contact, size_t index) const
+void	PhoneBook::_print_line(Contact contact, size_t index) const
 {
 	std::cout << "|"
-	<< ft_resize(std::to_string(index)) << "|"
-	<< ft_resize(contact.get_first_name()) << "|"
-	<< ft_resize(contact.get_last_name()) << "|"
-	<< ft_resize(contact.get_nickname()) << "|"
+	<< ft_set_width(std::to_string(index)) << "|"
+	<< ft_set_width(contact.get_first_name()) << "|"
+	<< ft_set_width(contact.get_last_name()) << "|"
+	<< ft_set_width(contact.get_nickname()) << "|"
 	<< std::endl;
 }
 
 void	PhoneBook::add()
 {
 	size_t	i;
-
 	Contact	contact;
-	if (!create_contact(&contact))
+
+	if (!contact.create_contact())
 		return ;
 	if (_size < _capacity)
 	{
@@ -98,12 +65,18 @@ void	PhoneBook::search() const
 	std::string index_input;
 
 	if (_size == 0)
-		return;
-	printTable();
+	{
+		std::cout << "(!) Phone book is empty." << std::endl;
+		return ;
+	}
+	_display_phone_book();
 	std::cout << "Choose contact index: ";
 	std::getline(std::cin, index_input);
-	index = std::stoi(index_input);
-	if (index < 0 || index >= (int)_size)
-		return;
+	if (!ft_stoi(index_input, &index) ||
+		index < 0 || index >= (int)_size)
+	{
+		std::cout << "(!) Ivalid index." << std::endl;
+		return ;
+	}
 	_contacts[index].printContactInfo();
 }

@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 23:42:08 by andde-so          #+#    #+#             */
-/*   Updated: 2023/08/30 23:59:43 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/01 20:40:45 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ int	main()
 	std::string	command;
 	PhoneBook	phonebook = PhoneBook();
 
-	while (command != "EXIT")
+	while (42)
 	{
-		std::cout << "Command: ";
+		std::cout << "Command [ADD | SEARCH | EXIT]: ";
 		std::getline(std::cin, command);
-		if (command == "ADD")
+		if (command == "EXIT")
+			break ;
+		else if (command == "ADD")
 			phonebook.add();
 		else if (command == "SEARCH")
 			phonebook.search();
+		else
+			std::cout << "(!) Invalid command!" << std::endl;
 	}
 	return (0);
 }
