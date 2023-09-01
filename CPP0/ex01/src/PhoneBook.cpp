@@ -6,12 +6,12 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 23:52:52 by andde-so          #+#    #+#             */
-/*   Updated: 2023/08/31 00:48:30 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/08/31 22:20:08 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
-#include "PhoneBook.hpp"
+
 
 void PhoneBook::add()
 {
@@ -32,10 +32,18 @@ void PhoneBook::add()
 
 void PhoneBook::search() const
 {
+	int			index;
+	std::string index_input;
+
 	if (_size == 0)
 		return ;
 	print_table();
-	
+	std::cout << "Choose contact index: ";
+	std::getline(std::cin, index_input);
+	index = std::stoi(index_input);
+	if (index < 0 || index >= (int)_size)
+		return ;
+	_contacts[index].printContactInfo();
 }
 
 void PhoneBook::print_table() const
