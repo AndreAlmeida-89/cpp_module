@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 21:26:32 by andde-so          #+#    #+#             */
-/*   Updated: 2023/08/31 22:17:37 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/08/31 22:50:15 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ public:
 		std::string	&_phone_number,
 		std::string	&_darkest_secret
 	);
-	Contact(int	index);
-	void	printContactInfo() const;
-	void	printLine() const;
+	std::string	get_first_name() const;
+	std::string	get_last_name() const;
+	std::string	get_nickname() const;
+	void		printContactInfo() const;
+	void		printLine() const;
 };
 
 #endif
