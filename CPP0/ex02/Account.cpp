@@ -3,10 +3,13 @@
 
 Account::Account(int initial_deposit)
 {
-	_amount += initial_deposit;
-	_totalAmount += _amount;
+
+	_amount = initial_deposit;
 	_accountIndex = _nbAccounts;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 	_nbAccounts++;
+	_totalAmount += _amount;
 	_displayTimestamp();
 	std::cout
 	<< "index:" << _accountIndex << ";"
