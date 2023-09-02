@@ -6,13 +6,15 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 18:55:24 by andde-so          #+#    #+#              #
-#    Updated: 2023/09/01 22:40:39 by andde-so         ###   ########.fr        #
+#    Updated: 2023/09/02 00:43:14 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= tests
 
-OBJ_DIR = obj
+OLD_LOG = 19920104_091532.log
+
+NEW_LOG	= new_log.log
 
 SRC		= Account.cpp tests.cpp
 
@@ -43,6 +45,9 @@ fclean: clean
 re:	fclean all
 
 run: re
-	./$(NAME)
+	./$(NAME) > $(NEW_LOG)
+	diff --side-by-side --width=180 $(OLD_LOG) $(NEW_LOG); [ $$? -eq 1 ]
+	$(RM) $(NEW_LOG)
+
 
 .PHONY: all clean fclean re run
