@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "main.hpp"
+#include <string>
 
 void	PhoneBook::_display_phone_book() const
 {
@@ -31,8 +32,11 @@ void	PhoneBook::_display_phone_book() const
 
 void	PhoneBook::_print_line(Contact contact, size_t index) const
 {
+	char	c;
+	
+	c = index + '0';
 	std::cout << "|"
-	<< ft_set_width(std::to_string(index)) << "|"
+	<< ft_set_width(&c) << "|"
 	<< ft_set_width(contact.get_first_name()) << "|"
 	<< ft_set_width(contact.get_last_name()) << "|"
 	<< ft_set_width(contact.get_nickname()) << "|"
