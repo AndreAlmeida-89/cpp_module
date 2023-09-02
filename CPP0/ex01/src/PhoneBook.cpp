@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "main.hpp"
-#include <string>
 
 void	PhoneBook::_display_phone_book() const
 {
