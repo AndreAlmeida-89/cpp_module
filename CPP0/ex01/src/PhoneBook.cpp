@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 23:52:52 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/01 20:38:48 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/01 23:21:41 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	PhoneBook::_display_phone_book() const
 void	PhoneBook::_print_line(Contact contact, size_t index) const
 {
 	char	c;
-	
+
 	c = index + '0';
 	std::cout << "|"
 	<< ft_set_width(&c) << "|"
