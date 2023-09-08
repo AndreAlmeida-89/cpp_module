@@ -36,6 +36,7 @@ public:
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
+	void	makeDeposit_( int deposit );
 
 
 private:

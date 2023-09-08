@@ -5,24 +5,21 @@
 #                                                     +:+ +:+         +:+      #
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/15 18:55:24 by andde-so          #+#    #+#              #
-#    Updated: 2023/08/30 23:27:14 by andde-so         ###   ########.fr        #
+#    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
+#    Updated: 2023/09/04 11:57:46 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= phonebook
+NAME	= zombie
 
-INC_DIR	= include
-
-SRC_DIR = src
-
-OBJ_DIR = obj
-
-SRC		= $(wildcard $(SRC_DIR)/*.cpp)
+SRC		=	Zombie.cpp \
+			newZombie.cpp \
+			randomChump.cpp \
+			main.cpp
 
 OBJ		= $(SRC:%.cpp=%.o)
 
-CFLAGS	= -I$(INC_DIR) -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
 STD		= -std=c++98
 
@@ -46,7 +43,7 @@ fclean: clean
 
 re:	fclean all
 
-run: re
-	./$(NAME)
+run: all
+	./$(NAME) && $(RM) $(OBJ) $(NAME)
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run test

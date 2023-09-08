@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 23:42:08 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/01 20:40:45 by andde-so         ###   ########.fr       */
+/*   Created: 2023/09/04 11:42:11 by andde-so          #+#    #+#             */
+/*   Updated: 2023/09/04 11:50:54 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.hpp"
+#include "Zombie.hpp"
 
-int	main()
+void randomChump(std::string name)
 {
-	std::string	command;
-	PhoneBook	phonebook = PhoneBook();
-
-	while (42)
-	{
-		std::cout << "Command [ADD | SEARCH | EXIT]: ";
-		std::getline(std::cin, command);
-		if (command == "EXIT")
-			break ;
-		else if (command == "ADD")
-			phonebook.add();
-		else if (command == "SEARCH")
-			phonebook.search();
-		else
-			std::cout << "(!) Invalid command!" << std::endl;
-	}
-	return (0);
+	Zombie(name).announce();
 }

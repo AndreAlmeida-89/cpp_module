@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 21:26:40 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/01 19:44:10 by andde-so         ###   ########.fr       */
+/*   Created: 2023/09/04 11:36:40 by andde-so          #+#    #+#             */
+/*   Updated: 2023/09/04 12:32:31 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-# include "main.hpp"
+#ifndef ZOMBIE_H
+#define ZOMBIE_H
+#include <iostream>
 
-class PhoneBook
+class Zombie
 {
 private:
-	static const	size_t	_capacity= 8;
-	Contact 		_contacts[_capacity];
-	size_t			_size;
-
-	void	_display_phone_book() const;
-	void	_print_line(Contact contact, size_t index) const;
+	std::string name;
 
 public:
-	void	add();
-	void	search() const;
+	Zombie();
+	Zombie(std::string name);
+	Zombie(const Zombie &zombie);
+	Zombie &operator=(const Zombie &rhs);
+	~Zombie();
+
+	void announce(void);
+	std::string getName() const;
 };
+
+std::ostream &operator<<(std::ostream &stream, const Zombie &zombie);
+Zombie *newZombie(std::string name);
+void randomChump(std::string name);
 
 #endif

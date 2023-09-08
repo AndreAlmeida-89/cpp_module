@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 01:17:12 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/02 01:17:13 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:10:38 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	Account::displayStatus(void) const
 	<< "withdrawals:" << _nbWithdrawals
 	<< std::endl;
 }
+
 
 void	Account::_displayTimestamp(void)
 {

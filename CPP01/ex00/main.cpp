@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/14 22:19:50 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/01 20:20:41 by andde-so         ###   ########.fr       */
+/*   Created: 2023/09/04 11:31:36 by andde-so          #+#    #+#             */
+/*   Updated: 2023/09/04 12:06:16 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_HPP
-# define MAIN_HPP
+#include "Zombie.hpp"
 
-# include <iostream>
-# include "Contact.hpp"
-# include "PhoneBook.hpp"
+int main(void)
+{
+	Zombie z1 = Zombie("z1");
+	z1.announce();
 
-std::string	ft_set_width(std::string str, size_t width = 10);
-bool		ft_stoi(std::string &str, int *n);
+	Zombie *z2 = newZombie("z2");
+	z2->announce();
+	delete z2;
 
-#endif
+	randomChump("z3");
+
+	return (0);
+}
