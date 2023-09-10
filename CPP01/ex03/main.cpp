@@ -6,19 +6,31 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:31:36 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/08 17:24:40 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/09 23:34:37 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int main(void)
 {
-	Zombie z1 = Zombie("z1");
-	z1.announce();
-	Zombie *z2 = newZombie("z2");
-	z2->announce();
-	delete z2;
-	randomChump("z3");
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
 	return (0);
 }

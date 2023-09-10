@@ -14,11 +14,20 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie() {}
+Zombie::Zombie()
+{
+	std::cerr
+		<< "A zombie has been created"
+		<< std::endl;
+}
 
 Zombie::Zombie(std::string name)
 {
 	this->name = name;
+	std::cerr
+		<< name
+		<< ": has been created"
+		<< std::endl;
 }
 
 Zombie::~Zombie()
@@ -40,4 +49,9 @@ void Zombie::announce(void)
 std::string Zombie::getName() const
 {
 	return (name);
+}
+
+void Zombie::setName(std::string name)
+{
+	this->name = name;
 }
