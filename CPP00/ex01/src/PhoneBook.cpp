@@ -6,13 +6,13 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 23:52:52 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/08 16:59:00 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/09 23:39:35 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-void	PhoneBook::_display_phone_book() const
+void PhoneBook::_display_phone_book() const
 {
 	const size_t width = 45;
 
@@ -29,23 +29,23 @@ void	PhoneBook::_display_phone_book() const
 	std::cout << std::string(width, '-') << std::endl;
 }
 
-void	PhoneBook::_print_line(Contact contact, size_t index) const
+void PhoneBook::_print_line(Contact contact, size_t index) const
 {
 	std::cout << "|"
-	<< std::string(9,' ') << index << "|"
-	<< ft_set_width(contact.get_first_name()) << "|"
-	<< ft_set_width(contact.get_last_name()) << "|"
-	<< ft_set_width(contact.get_nickname()) << "|"
-	<< std::endl;
+			  << std::string(9, ' ') << index << "|"
+			  << ft_set_width(contact.get_first_name()) << "|"
+			  << ft_set_width(contact.get_last_name()) << "|"
+			  << ft_set_width(contact.get_nickname()) << "|"
+			  << std::endl;
 }
 
-void	PhoneBook::add()
+void PhoneBook::add()
 {
-	size_t	i;
-	Contact	contact;
+	size_t i;
+	Contact contact;
 
 	if (!contact.create_contact())
-		return ;
+		return;
 	if (_size < _capacity)
 	{
 		_contacts[_size] = contact;
@@ -59,7 +59,7 @@ void	PhoneBook::add()
 	}
 }
 
-void	PhoneBook::search() const
+void PhoneBook::search() const
 {
 	int index;
 	std::string index_input;
@@ -67,7 +67,7 @@ void	PhoneBook::search() const
 	if (_size == 0)
 	{
 		std::cout << "(!) Phone book is empty." << std::endl;
-		return ;
+		return;
 	}
 	_display_phone_book();
 	std::cout << "Choose contact index: ";
@@ -76,7 +76,7 @@ void	PhoneBook::search() const
 		index < 0 || index >= (int)_size)
 	{
 		std::cout << "(!) Ivalid index." << std::endl;
-		return ;
+		return;
 	}
 	_contacts[index].printContactInfo();
 }

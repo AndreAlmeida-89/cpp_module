@@ -6,16 +6,16 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 19:48:00 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/01 20:08:38 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/09 23:38:06 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
 
-bool	ft_stoi(std::string &str, int *n)
+bool ft_stoi(std::string &str, int *n)
 {
-	int	i;
-	int	sign;
+	int i;
+	int sign;
 
 	*n = 0;
 	sign = 1;
