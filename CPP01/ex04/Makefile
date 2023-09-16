@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
+#    By: andde-so <andde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2023/09/10 20:53:15 by andde-so         ###   ########.fr        #
+#    Updated: 2023/09/16 12:47:05 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= sed_is_for_losers
 
-SRC		= main.cpp
+SRC		=	main.cpp \
+			StringReplacer.cpp
 
 OBJ		= $(SRC:%.cpp=%.o)
 
@@ -41,6 +42,6 @@ fclean: clean
 re:	fclean all
 
 run: all
-	./$(NAME) example.txt a b && $(RM) $(OBJ) $(NAME)
+	./$(NAME) example.txt line batata && $(RM) $(OBJ) $(NAME)
 
 .PHONY: all clean fclean re run test
