@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
+#    By: andde-so <andde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2023/09/12 00:18:38 by andde-so         ###   ########.fr        #
+#    Updated: 2023/09/16 15:12:51 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= harl
 
-SRC		= main.cpp
+SRC		=	main.cpp \
+			Harl.cpp
 
 OBJ		= $(SRC:%.cpp=%.o)
 
