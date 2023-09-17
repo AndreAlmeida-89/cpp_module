@@ -3,56 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andde-so <andde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:09:55 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/16 16:58:10 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/17 19:47:19 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
 Harl::Harl()
-{
-	this->arr = {
-		&Harl::debug,
-		&Harl::info,
-		&Harl::warning,
-		&Harl::error};
-}
+{}
 
 Harl::~Harl() {}
 
-Level Harl::getLevel(std::string &level)
+Level Harl::_getLevelType(std::string &level)
 {
 	size_t i = 0;
 	while (i < NUMBER_OF_LEVELS && _levels[i] != level)
 		i++;
-	return (i < NUMBER_OF_LEVELS ? (Level)(i) : UNKNOWN);
+	return ((Level)(i));
 }
 
 void Harl::complain(std::string level)
 {
-	switch (getLevel(level))
+	switch (_getLevelType(level))
 	{
-	case 0:
-		std::cout << "[ " << _levels[0] << " ]" << std::endl;
-		(this->*arr[0])();
+	case DEBUG:
+		std::cout << "[ " << _levels[DEBUG] << " ]" << std::endl;
+		debug();
 		std::cout << std::endl;
 
-	case 1:
-		std::cout << "[ " << _levels[1] << " ]" << std::endl;
-		(this->*arr[1])();
+	case INFO:
+		std::cout << "[ " << _levels[INFO] << " ]" << std::endl;
+		info();
 		std::cout << std::endl;
 
-	case 2:
-		std::cout << "[ " << _levels[2] << " ]" << std::endl;
-		(this->*arr[2])();
+	case WARNING:
+		std::cout << "[ " << _levels[WARNING] << " ]" << std::endl;
+		warning();
 		std::cout << std::endl;
 
-	case 3:
-		std::cout << "[ " << _levels[3] << " ]" << std::endl;
-		(this->*arr[3])();
+	case ERROR:
+		std::cout << "[ " << _levels[ERROR] << " ]" << std::endl;
+		error();
 		break;
 
 	default:
