@@ -3,8 +3,8 @@
 // Constructors
 Fixed::Fixed()
 {
-	_rawBits = 0;
 	std::cout << "\e[0;33mDefault Constructor called of Fixed\e[0m" << std::endl;
+	_rawBits = 0;
 }
 
 Fixed::Fixed(const Fixed &copy)
@@ -13,10 +13,17 @@ Fixed::Fixed(const Fixed &copy)
 	*this = copy;
 }
 
-Fixed::Fixed(int rawBits)
+Fixed::Fixed(const int i)
 {
-	this->_rawBits = rawBits;
-	std::cout << "\e[0;33mFields Constructor called of Fixed\e[0m" << std::endl;
+	std::cout << "\e[0;33mInt Constructor called of Fixed\e[0m" << std::endl;
+	this->_rawBits = i;
+}
+
+Fixed::Fixed(const float f)
+{
+	std::cout << "\e[0;33mFloat Constructor called of Fixed\e[0m" << std::endl;
+	this->_rawBits = roundf(f * 256.0f);
+	
 }
 
 // Destructor
@@ -33,16 +40,31 @@ Fixed &Fixed::operator=(const Fixed &assign)
 	return *this;
 }
 
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
+{
+	os << fixed.getRawBits();
+	return (os);
+}
+
 // Getters / Setters
 
 int Fixed::getRawBits() const
 {
-	std::cout << "\e[1;34mgetRawBits Member Function called of Fixed\e[0m" << std::endl;
 	return _rawBits;
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	std::cout << "\e[1;34msetRawBits Member Function called of Fixed\e[0m" << std::endl;
 	_rawBits = raw;
+}
+
+// Member Functions
+float Fixed::toFloat(void) const
+{
+	return _rawBits / 256.0f;
+}
+
+int Fixed::toInt(void) const
+{
+	return _rawBits;
 }
