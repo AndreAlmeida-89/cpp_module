@@ -3,39 +3,27 @@
 // Constructors
 DiamondTrap::DiamondTrap()
 {
-	_name = "";
 	std::cout << "\e[0;33mDefault Constructor called of DiamondTrap\e[0m" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &copy)
 {
-	_name = copy.getName();
+	_name = copy._name;
+	ClapTrap::_name = copy._name + "_clap_name";
+	_hitPoints = copy._hitPoints;
+	_energyPoints = copy._energyPoints;
+	_attackDamage = copy._attackDamage;
 	std::cout << "\e[0;33mCopy Constructor called of DiamondTrap\e[0m" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap(std::string name) : FragTrap(name)
 {
-	this->_name = name;
+	_name = name;
+	ClapTrap::_name = name + "_clap_name";
+	_energyPoints = 50;
 	std::cout << "\e[0;33mFields Constructor called of DiamondTrap\e[0m" << std::endl;
 }
 
-/*
-Its attributes and member functions will be picked from either one of its parent classes:
-•Name, which is passed as parameter to a constructor
-•ClapTrap::name (parameter of the constructor + "_clap_name" suffix)
-•Hit points (FragTrap)
-•Energy points (ScavTrap)
-•Attack damage (FragTrap)
-*/
-DiamondTrap::DiamondTrap(std::string name, int hitPoints, int energyPoints, int atackDamage)
-	: ClapTrap(name + "_clap_name")
-{
-	this->_name = name;
-	FragTrap::setHitPoints(hitPoints);
-	ScavTrap::setEnergyPoints(energyPoints);
-	FragTrap::setAtackDamage(atackDamage);
-	std::cout << "\e[0;33mFields Constructor called of DiamondTrap\e[0m" << std::endl;
-}
 // Destructor
 DiamondTrap::~DiamondTrap()
 {
@@ -45,25 +33,16 @@ DiamondTrap::~DiamondTrap()
 // Operators
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &assign)
 {
-	_name = assign.getName();
+	this->ClapTrap::operator=(assign);
+	std::cout << "\e[0;33mAssignation Operator called of DiamondTrap\e[0m" << std::endl;
 	return *this;
-}
-
-// Getters / Setters
-std::string DiamondTrap::getName() const
-{
-	return _name;
-}
-
-void DiamondTrap::setName(std::string name)
-{
-	this->_name = name;
 }
 
 // Member Functions
 void DiamondTrap::whoAmI()
 {
-	std::cout << "DiamondTrap(" << _name << ")" << std::endl;
+	std::cout << "DiamondTrap(" << _name << ")"
+			  << " ClapTrap(" << ClapTrap::_name << ")" << std::endl;
 }
 
 void DiamondTrap::attack(std::string const &target)

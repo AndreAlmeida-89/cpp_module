@@ -1,20 +1,22 @@
 #include "FragTrap.hpp"
 
 // Constructors
-FragTrap::FragTrap() : ClapTrap("", 100, 100, 30)
+FragTrap::FragTrap()
 {
 	std::cout << "\e[0;33mDefault Constructor called of FragTrap\e[0m" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name, int hitPoints, int energyPoints, int atackDamage)
-	: ClapTrap(name, hitPoints, energyPoints, atackDamage)
+FragTrap::FragTrap(std::string name)
 {
+	_name = name;
+	_hitPoints = 100;
+	_energyPoints = 100;
+	_attackDamage = 30;
 	std::cout << "\e[0;33mFields Constructor called of FragTrap\e[0m" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &copy)
+FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy)
 {
-	(void)copy;
 	std::cout << "\e[0;33mCopy Constructor called of FragTrap\e[0m" << std::endl;
 }
 
@@ -29,6 +31,12 @@ FragTrap &FragTrap::operator=(const FragTrap &assign)
 {
 	this->ClapTrap::operator=(assign);
 	return *this;
+}
+
+// Getters
+int FragTrap::getHitPoints() const
+{
+	return _hitPoints;
 }
 
 // Member Functions

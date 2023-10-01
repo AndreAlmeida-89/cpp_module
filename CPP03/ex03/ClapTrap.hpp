@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 23:49:35 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/23 00:40:22 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:19:37 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ public:
 	// Constructors
 	ClapTrap();
 	ClapTrap(const ClapTrap &copy);
-	ClapTrap(std::string name,
-			 int hitPoints = 100,
-			 int energyPoints = 50,
-			 int atackDamage = 20);
+	ClapTrap(std::string name);
 
 	// Destructor
 	~ClapTrap();
@@ -40,19 +37,19 @@ public:
 	void setHitPoints(int hitPoints);
 	int getEnergyPoints() const;
 	void setEnergyPoints(int energyPoints);
-	int getAtackDamage() const;
-	void setAtackDamage(int atackDamage);
+	int getAttackDamage() const;
+	void setattackDamage(int attackDamage);
 
 	// Member Functions
 	void attack(const std::string &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-private:
+protected:
 	std::string _name;
 	int _hitPoints;
 	int _energyPoints;
-	int _atackDamage;
+	int _attackDamage;
 };
 
 // << Operator overload

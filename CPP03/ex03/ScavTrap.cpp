@@ -6,30 +6,30 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 00:29:39 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/25 21:30:58 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:19:37 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
 // Constructors
-ScavTrap::ScavTrap() : ClapTrap("", 100, 50, 20)
+ScavTrap::ScavTrap()
 {
-	_isInGateKeeperMode = false;
 	std::cout << "\e[0;33mDefault Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy)
+ScavTrap::ScavTrap(std::string name)
 {
-	_isInGateKeeperMode = copy.getIsInGateKeeperMode();
-	std::cout << "\e[0;33mCopy Constructor called of ScavTrap\e[0m" << std::endl;
+	_name = name;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 20;
+	std::cout << "\e[0;33mFields Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name, int hitPoints, int energyPoints, int atackDamage)
-	: ClapTrap(name, hitPoints, energyPoints, atackDamage)
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 {
-	_isInGateKeeperMode = false;
-	std::cout << "\e[0;33mFields Constructor called of ScavTrap\e[0m" << std::endl;
+	std::cout << "\e[0;33mCopy Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
 // Destructor
@@ -41,25 +41,18 @@ ScavTrap::~ScavTrap()
 // Operators
 ScavTrap &ScavTrap::operator=(const ScavTrap &assign)
 {
-	_isInGateKeeperMode = assign.getIsInGateKeeperMode();
+	this->ClapTrap::operator=(assign);
+	std::cout << "\e[0;33mAssignation Operator called of ScavTrap\e[0m" << std::endl;
 	return *this;
-}
-
-// Getters / Setters
-bool ScavTrap::getIsInGateKeeperMode() const
-{
-	return _isInGateKeeperMode;
 }
 
 // Member Functions
 void ScavTrap::guardGate()
 {
-	_isInGateKeeperMode = !_isInGateKeeperMode;
-	std::cout << "ScavTrap " << getName() << " is now " << (_isInGateKeeperMode ? "in" : "out") << " of Gate Keeper Mode" << std::endl;
+	std::cout << "ScavTrap " << getName() << " has entered Gate Keeper Mode" << std::endl;
 }
 
-// Super class member functions
 void ScavTrap::attack(std::string const &target)
 {
-	std::cout << "ScavTrap " << getName() << " attacks " << target << ", causing " << getAtackDamage() << " points of damage!" << std::endl;
+	std::cout << "ScavTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
 }
