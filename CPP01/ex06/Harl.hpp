@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:08:04 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/17 19:48:37 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/17 20:04:16 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ private:
 	void info(void);
 	void warning(void);
 	void error(void);
-	static Level _getLevelType(std::string &level);
-	static const std::string _levels[NUMBER_OF_LEVELS];
+	Level _getLevelType(std::string &level);
 
 public:
 	Harl();

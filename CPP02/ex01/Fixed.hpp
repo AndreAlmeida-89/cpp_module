@@ -24,9 +24,9 @@ public:
 	int getRawBits() const;
 	void setRawBits(int const raw);
 
-	//Member Functions
-	float toFloat( void ) const;
-	int toInt( void ) const;
+	// Member Functions
+	float toFloat(void) const;
+	int toInt(void) const;
 
 private:
 	int _rawBits;

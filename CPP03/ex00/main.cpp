@@ -6,32 +6,35 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 23:49:28 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/30 21:35:39 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:19:38 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
-
 
 int main()
 {
-	// Test FragTrap constructors
-	FragTrap fragTrap1;
-	FragTrap fragTrap2("FragTrap2");
-	FragTrap fragTrap3(fragTrap2);
+	// Test Constructors
+	ClapTrap clapTrap1;
+	ClapTrap clapTrap2("ClapTrap2");
+	ClapTrap clapTrap3(clapTrap2);
 
-	// Test FragTrap operator=
-	fragTrap1 = fragTrap2;
+	// Test operator=
+	clapTrap1 = clapTrap2;
 
-	// Test FragTrap member functions
-	std::cout << fragTrap1 << std::endl;
-	fragTrap1.attack("FragTrap1");
-	fragTrap1.takeDamage(10);
-	fragTrap1.beRepaired(5);
-	fragTrap1.highFivesGuys();
-	std::cout << fragTrap1 << std::endl;
+	// Test member functions
+	clapTrap1.attack("ClapTrap1");
+	clapTrap1.takeDamage(10);
+	clapTrap1.beRepaired(10);
+
+	// Test getters
+	std::cout << "ClapTrap1 name: " << clapTrap1.getName() << std::endl;
+	std::cout << "ClapTrap1 hit points: " << clapTrap1.getHitPoints() << std::endl;
+	std::cout << "ClapTrap1 energy points: " << clapTrap1.getEnergyPoints() << std::endl;
+	std::cout << "ClapTrap1 attack damage: " << clapTrap1.getAttackDamage() << std::endl;
+
+	// Test << operator
+	std::cout << clapTrap1 << std::endl;
 
 	return (0);
 }

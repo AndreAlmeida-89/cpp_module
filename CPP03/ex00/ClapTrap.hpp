@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 23:49:35 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/01 01:19:38 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/01 01:19:37 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-protected:
+private:
 	std::string _name;
 	int _hitPoints;
 	int _energyPoints;

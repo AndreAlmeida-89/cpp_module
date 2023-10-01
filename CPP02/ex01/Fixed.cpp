@@ -60,10 +60,10 @@ void Fixed::setRawBits(int const raw)
 // Member Functions
 float Fixed::toFloat(void) const
 {
-	return (float)_rawBits / (1 << _fracBits);
+	return ((float)_rawBits / (1 << _fracBits));
 }
 
 int Fixed::toInt(void) const
 {
-	return _rawBits / (1 << _fracBits);
+	return (int)(_rawBits >> _fracBits);
 }

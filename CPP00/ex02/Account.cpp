@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 01:17:12 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/09 23:42:21 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:06:03 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 Account::Account(int initial_deposit)
 {
-
 	_amount = initial_deposit;
 	_accountIndex = _nbAccounts;
 	_nbDeposits = 0;
