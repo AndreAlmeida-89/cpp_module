@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:53 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 12:07:00 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:27:42 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ public:
 
 	// Operators
 	Dog &operator=(const Dog &assign);
+
+	// Member functions
+	void makeSound() const;
 
 private:
 };

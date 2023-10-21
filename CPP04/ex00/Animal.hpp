@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:16:28 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 16:25:43 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:45:55 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ public:
 	Animal(std::string type);
 
 	// Destructor
-	~Animal();
+	virtual ~Animal();
 
 	// Operators
-	Animal &operator=(const Animal &assign);
+	virtual Animal &operator=(const Animal &assign);
 
 	// Getters / Setters
-	std::string getType() const;
+	virtual std::string getType() const;
 
 	// Member functions
-	void makeSound() const;
+	virtual void makeSound() const;
 
 protected:
 	std::string _type;

@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:16:25 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 12:15:05 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:26:43 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,7 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-	if (_type == "Cat")
-		std::cout << "Meow!" << std::endl;
-	else if (_type == "Dog")
-		std::cout << "Woof!" << std::endl;
-	else
-		std::cout << "Sound of an animal..." << std::endl;
+	std::cout << "Sound of an animal..." << std::endl;
 }
 
 // Stream operators

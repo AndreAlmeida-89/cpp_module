@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:23:17 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 11:52:07 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:31:14 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ WrongCat &WrongCat::operator=(const WrongCat &assign)
 {
 	WrongAnimal::operator=(assign);
 	return *this;
+}
+
+// Member functions
+void WrongCat::makeSound() const
+{
+	std::cout << "\e[0;32mMeow Meow!\e[0m" << std::endl;
 }

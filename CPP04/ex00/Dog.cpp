@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:43 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 12:06:55 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:28:11 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ Dog &Dog::operator=(const Dog &assign)
 {
 	Animal::operator=(assign);
 	return *this;
+}
+
+// Member functions
+void Dog::makeSound() const
+{
+	std::cout << "\e[0;32mWoof Woof!\e[0m" << std::endl;
 }
