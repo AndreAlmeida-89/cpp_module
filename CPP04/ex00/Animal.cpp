@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:16:25 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 11:29:02 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:15:05 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void Animal::makeSound() const
 	else if (_type == "Dog")
 		std::cout << "Woof!" << std::endl;
 	else
-		std::cout << "..." << std::endl;
+		std::cout << "Sound of an animal..." << std::endl;
 }
 
 // Stream operators

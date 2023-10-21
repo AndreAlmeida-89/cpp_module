@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:16:25 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 11:59:14 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 12:16:49 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,7 @@ std::string WrongAnimal::getType() const
 
 void WrongAnimal::makeSound() const
 {
-	if (_type == "Cat")
-		std::cout << "Meow!" << std::endl;
-	else if (_type == "Dog")
-		std::cout << "Woof!" << std::endl;
-	else
-		std::cout << "WrongAnimal sound" << std::endl;
+	std::cout << "Sound of a wrong animal..." << std::endl;
 }
 
 // Stream operators
