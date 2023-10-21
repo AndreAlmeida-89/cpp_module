@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:43 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/01 11:24:13 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:04:24 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // Constructors
 Dog::Dog()
 {
+	_type = "Dog";
 	std::cout << "\e[0;33mDefault Constructor called of Dog\e[0m" << std::endl;
 }
 

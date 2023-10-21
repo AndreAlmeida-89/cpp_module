@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:16:28 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 10:47:23 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:45:23 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
 #include <iostream>
 #include <string>
 
-class Animal
+class WrongAnimal
 {
 public:
 	// Constructors
-	Animal();
-	Animal(const Animal &copy);
-	Animal(std::string type);
+	WrongAnimal();
+	WrongAnimal(const WrongAnimal &copy);
+	WrongAnimal(std::string type);
 
 	// Destructor
-	~Animal();
+	~WrongAnimal();
 
 	// Operators
-	Animal &operator=(const Animal &assign);
+	WrongAnimal &operator=(const WrongAnimal &assign);
 
 	// Getters / Setters
 	std::string getType() const;
@@ -41,6 +41,6 @@ protected:
 };
 
 // Stream operators
-std::ostream &operator<<(std::ostream &stream, const Animal &object);
+std::ostream &operator<<(std::ostream &stream, const WrongAnimal &object);
 
 #endif

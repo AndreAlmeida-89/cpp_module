@@ -1,67 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:16:25 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 11:29:02 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:59:14 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 // Constructors
-Animal::Animal()
+WrongAnimal::WrongAnimal()
 {
-	_type = "Unknown";
-	std::cout << "\e[0;33mDefault Constructor called of Animal\e[0m" << std::endl;
+	_type = "WrongUnknown";
+	std::cout << "\e[0;33mDefault Constructor called of WrongAnimal\e[0m" << std::endl;
 }
 
-Animal::Animal(const Animal &copy)
+WrongAnimal::WrongAnimal(const WrongAnimal &copy)
 {
 	_type = copy.getType();
-	std::cout << "\e[0;33mCopy Constructor called of Animal\e[0m" << std::endl;
+	std::cout << "\e[0;33mCopy Constructor called of WrongAnimal\e[0m" << std::endl;
 }
 
-Animal::Animal(std::string type)
+WrongAnimal::WrongAnimal(std::string type)
 {
 	_type = type;
-	std::cout << "\e[0;33mFields Constructor called of Animal\e[0m" << std::endl;
+	std::cout << "\e[0;33mFields Constructor called of WrongAnimal\e[0m" << std::endl;
 }
 
 // Destructor
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "\e[0;31mDestructor called of Animal\e[0m" << std::endl;
+	std::cout << "\e[0;31mDestructor called of WrongAnimal\e[0m" << std::endl;
 }
 
 // Operators
-Animal &Animal::operator=(const Animal &assign)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &assign)
 {
 	_type = assign.getType();
 	return *this;
 }
 
 // Getters / Setters
-std::string Animal::getType() const
+std::string WrongAnimal::getType() const
 {
 	return _type;
 }
 
-void Animal::makeSound() const
+void WrongAnimal::makeSound() const
 {
 	if (_type == "Cat")
 		std::cout << "Meow!" << std::endl;
 	else if (_type == "Dog")
 		std::cout << "Woof!" << std::endl;
 	else
-		std::cout << "..." << std::endl;
+		std::cout << "WrongAnimal sound" << std::endl;
 }
 
 // Stream operators
-std::ostream &operator<<(std::ostream &stream, const Animal &object)
+std::ostream &operator<<(std::ostream &stream, const WrongAnimal &object)
 {
 	stream << "Animal of type " << object.getType() << "" << std::endl;
 	return stream;

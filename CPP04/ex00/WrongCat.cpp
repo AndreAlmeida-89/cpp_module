@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:23:17 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 11:04:53 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:52:07 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
 // Constructors
-Cat::Cat()
+WrongCat::WrongCat()
 {
-	_type = "Cat";
-	std::cout << "\e[0;33mDefault Constructor called of Cat\e[0m" << std::endl;
+	_type = "WrongCat";
+	std::cout << "\e[0;33mDefault Constructor called of WrongCat\e[0m" << std::endl;
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy)
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
 {
-	std::cout << "\e[0;33mCopy Constructor called of Cat\e[0m" << std::endl;
+	std::cout << "\e[0;33mCopy Constructor called of WrongCat\e[0m" << std::endl;
 }
 
 // Destructor
-Cat::~Cat()
+WrongCat::~WrongCat()
 {
-	std::cout << "\e[0;31mDestructor called of Cat\e[0m" << std::endl;
+	std::cout << "\e[0;31mDestructor called of WrongCat\e[0m" << std::endl;
 }
 
 // Operators
-Cat &Cat::operator=(const Cat &assign)
+WrongCat &WrongCat::operator=(const WrongCat &assign)
 {
-	Animal::operator=(assign);
+	WrongAnimal::operator=(assign);
 	return *this;
 }
