@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:23:23 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:30:53 by andde-so         ###   ########.fr       */
+/*   Created: 2023/10/01 11:20:53 by andde-so          #+#    #+#             */
+/*   Updated: 2023/11/25 23:18:16 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef DOG_HPP
+#define DOG_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Cat : public Animal
+class Dog : public AAnimal
 {
 public:
 	// Constructors
-	Cat();
-	Cat(const Cat &copy);
+	Dog();
+	Dog(const Dog &copy);
+	Dog(const std::string &type);
 
 	// Destructor
-	~Cat();
+	~Dog();
 
 	// Operators
-	Cat &operator=(const Cat &assign);
+	Dog &operator=(const Dog &assign);
 
 	// Member functions
 	void makeSound() const;
+	
 
 private:
 	Brain *_brain;

@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:23:23 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:30:53 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 11:51:59 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
 public:
 	// Constructors
-	Cat();
-	Cat(const Cat &copy);
+	WrongCat();
+	WrongCat(const WrongCat &copy);
 
 	// Destructor
-	~Cat();
+	~WrongCat();
 
 	// Operators
-	Cat &operator=(const Cat &assign);
+	WrongCat &operator=(const WrongCat &assign);
 
 	// Member functions
 	void makeSound() const;
 
 private:
-	Brain *_brain;
 };
 
 #endif

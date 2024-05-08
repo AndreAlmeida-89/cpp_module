@@ -9,7 +9,7 @@ FragTrap::FragTrap() : ClapTrap()
 FragTrap::FragTrap(std::string name)
 {
 	_name = name;
-	_hitPoints = 100;
+	_hitPoints = setHitPoints();
 	_energyPoints = 100;
 	_attackDamage = 30;
 	std::cout << "\e[0;33mFields Constructor called of FragTrap\e[0m" << std::endl;

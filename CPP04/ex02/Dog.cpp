@@ -1,47 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:43 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/24 21:50:01 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:18:50 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
+#include "Dog.hpp"
 
 // Constructors
-Brain::Brain()
+Dog::Dog()
 {
-	std::cout << "\e[0;33mDefault Constructor called of Brain\e[0m" << std::endl;
+	_type = "Dog";
+	_brain = new Brain();
+	std::cout << "\e[0;33mDefault Constructor called of Dog\e[0m" << std::endl;
 }
 
-Brain::Brain(const Brain &copy)
+Dog::Dog(const Dog &copy)
 {
-	std::cout << "\e[0;33mCopy Constructor called of Brain\e[0m" << std::endl;
-	this->operator=(copy);
+	std::cout << "\e[0;33mCopy Constructor called of Dog\e[0m" << std::endl;
+	_type = copy.getType();
 }
 
 // Destructor
-Brain::~Brain()
+Dog::~Dog()
 {
-	std::cout << "\e[0;31mDestructor called of Brain\e[0m" << std::endl;
+	std::cout << "\e[0;31mDestructor called of Dog\e[0m" << std::endl;
+	delete _brain;
 }
 
 // Operators
-Brain &Brain::operator=(const Brain &assign)
+Dog &Dog::operator=(const Dog &assign)
 {
-	for (int i = 0; i < NB_OF_IDEAS; i++)
-		ideas[i] = assign.getIdea(i);
+	std::cout << "\e[0;33mCopy Operator called of Dog\e[0m" << std::endl;
+	_type = assign.getType();
 	return *this;
 }
 
-// Getters
-std::string Brain::getIdea(int i) const
+// Methods
+void Dog::makeSound() const
 {
-	if (i < 0 || i >= NB_OF_IDEAS)
-		return "(!)Invalid index";
-	return ideas[i];
+	std::cout << "\e[0;32mDog says: \"Woof Woof\"\e[0m" << std::endl;
 }

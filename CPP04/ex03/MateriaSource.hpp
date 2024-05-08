@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:23:23 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:30:53 by andde-so         ###   ########.fr       */
+/*   Created: 2023/11/25 22:58:11 by andde-so          #+#    #+#             */
+/*   Updated: 2023/11/25 23:00:31 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef MATERIASOURCE_HPP
+#define MATERIASOURCE_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "IMateriaSource.hpp"
 
-class Cat : public Animal
+class MateriaSource : public IMateriaSource
 {
 public:
 	// Constructors
-	Cat();
-	Cat(const Cat &copy);
+	MateriaSource();
+	MateriaSource(const MateriaSource &copy);
 
 	// Destructor
-	~Cat();
+	~MateriaSource();
 
 	// Operators
-	Cat &operator=(const Cat &assign);
+	MateriaSource &operator=(const MateriaSource &assign);
 
 	// Member functions
-	void makeSound() const;
+	void learnMateria(AMateria *m);
+	AMateria *createMateria(std::string const &type);
 
 private:
-	Brain *_brain;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 00:29:56 by andde-so          #+#    #+#             */
-/*   Updated: 2023/09/30 20:46:59 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:35:44 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ public:
 	// Member Functions
 	void attack(std::string const &target);
 	void guardGate();
+
+
+	int getHitPoints() const;
+	void setHitPoints(int hitPoints);
 };
 
 #endif

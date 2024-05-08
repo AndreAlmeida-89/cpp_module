@@ -1,46 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:23:17 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:31:04 by andde-so         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:31:14 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
 // Constructors
-Cat::Cat()
+WrongCat::WrongCat()
 {
-	_type = "Cat";
-	_brain = new Brain();
-	std::cout << "\e[0;33mDefault Constructor called of Cat\e[0m" << std::endl;
+	_type = "WrongCat";
+	std::cout << "\e[0;33mDefault Constructor called of WrongCat\e[0m" << std::endl;
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy)
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
 {
-	std::cout << "\e[0;33mCopy Constructor called of Cat\e[0m" << std::endl;
+	std::cout << "\e[0;33mCopy Constructor called of WrongCat\e[0m" << std::endl;
 }
 
 // Destructor
-Cat::~Cat()
+WrongCat::~WrongCat()
 {
-	std::cout << "\e[0;31mDestructor called of Cat\e[0m" << std::endl;
-	delete _brain;
+	std::cout << "\e[0;31mDestructor called of WrongCat\e[0m" << std::endl;
 }
 
 // Operators
-Cat &Cat::operator=(const Cat &assign)
+WrongCat &WrongCat::operator=(const WrongCat &assign)
 {
-	Animal::operator=(assign);
+	WrongAnimal::operator=(assign);
 	return *this;
 }
 
 // Member functions
-void Cat::makeSound() const
+void WrongCat::makeSound() const
 {
 	std::cout << "\e[0;32mMeow Meow!\e[0m" << std::endl;
 }

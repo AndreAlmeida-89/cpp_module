@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:23:23 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:30:53 by andde-so         ###   ########.fr       */
+/*   Created: 2023/10/01 11:16:28 by andde-so          #+#    #+#             */
+/*   Updated: 2023/10/21 14:32:23 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
+
+#define NB_OF_IDEAS 100
 
 #include <iostream>
-#include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
 
-class Cat : public Animal
+class Brain
 {
 public:
 	// Constructors
-	Cat();
-	Cat(const Cat &copy);
+	Brain();
+	Brain(const Brain &copy);
 
 	// Destructor
-	~Cat();
+	~Brain();
 
 	// Operators
-	Cat &operator=(const Cat &assign);
+	Brain &operator=(const Brain &assign);
 
-	// Member functions
-	void makeSound() const;
+	// Getters / Setters
+	std::string getIdea(int index) const;
 
 private:
-	Brain *_brain;
+	std::string ideas[NB_OF_IDEAS];
 };
+
+// Stream operators
+std::ostream &operator<<(std::ostream &stream, const Brain &object);
 
 #endif

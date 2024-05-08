@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:23:23 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:30:53 by andde-so         ###   ########.fr       */
+/*   Created: 2023/11/25 22:45:21 by andde-so          #+#    #+#             */
+/*   Updated: 2023/11/25 22:45:22 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef CURE_HPP
+#define CURE_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "AMateria.hpp"
 
-class Cat : public Animal
+class Cure : public AMateria
 {
 public:
 	// Constructors
-	Cat();
-	Cat(const Cat &copy);
+	Cure();
+	Cure(const Cure &copy);
 
 	// Destructor
-	~Cat();
+	~Cure();
 
 	// Operators
-	Cat &operator=(const Cat &assign);
+	Cure &operator=(const Cure &assign);
 
 	// Member functions
-	void makeSound() const;
+	AMateria *clone() const;
+	void use(ICharacter &target);
 
 private:
-	Brain *_brain;
 };
 
 #endif

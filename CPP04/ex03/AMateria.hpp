@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:23:23 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:30:53 by andde-so         ###   ########.fr       */
+/*   Created: 2023/11/25 22:37:15 by andde-so          #+#    #+#             */
+/*   Updated: 2023/11/25 22:38:27 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "ICharacter.hpp"
 
-class Cat : public Animal
+class AMateria
 {
+protected:
+	std::string _type;
+
 public:
 	// Constructors
-	Cat();
-	Cat(const Cat &copy);
+	AMateria();
+	AMateria(const AMateria &copy);
+	AMateria(std::string const &_type);
 
 	// Destructor
-	~Cat();
+	~AMateria();
 
 	// Operators
-	Cat &operator=(const Cat &assign);
+	AMateria &operator=(const AMateria &assign);
+
+	// Getters / Setters
+	std::string const &getType() const;
 
 	// Member functions
-	void makeSound() const;
-
-private:
-	Brain *_brain;
+	virtual AMateria *clone() const = 0;
+	virtual void use(ICharacter &target);
 };
-
 #endif

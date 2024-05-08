@@ -6,21 +6,22 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2023/11/29 08:27:23 by andde-so         ###   ########.fr        #
+#    Updated: 2023/11/25 23:01:48 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= now_its_weird
+NAME	= interface_and_recap
 
-SRC		=	ClapTrap.cpp	\
-			ScavTrap.cpp	\
-			FragTrap.cpp	\
-			DiamondTrap.cpp	\
-			main.cpp		\
+SRC		=	main.cpp 		\
+			AMateria.cpp	\
+			ICharacter.cpp	\
+			Character.cpp	\
+			IMateriaSource.cpp	\
+			MateriaSource.cpp
 
 OBJ		= $(SRC:%.cpp=%.o)
 
-CFLAGS	= -Wall -Wextra -Werror -Wno-shadow
+CFLAGS	= -Wall -Wextra -Werror
 
 STD		= -std=c++98
 
@@ -47,4 +48,4 @@ re:	fclean all
 run: re
 	./$(NAME)
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run test

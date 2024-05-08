@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 11:23:23 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:30:53 by andde-so         ###   ########.fr       */
+/*   Created: 2023/10/01 11:16:28 by andde-so          #+#    #+#             */
+/*   Updated: 2023/11/25 23:35:36 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef AANIMAL_HPP
+#define AANIMAL_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
 
-class Cat : public Animal
+class AAnimal
 {
 public:
 	// Constructors
-	Cat();
-	Cat(const Cat &copy);
+	AAnimal();
+	AAnimal(const AAnimal &copy);
+	AAnimal(const std::string &type);
 
 	// Destructor
-	~Cat();
+	virtual ~AAnimal();
 
 	// Operators
-	Cat &operator=(const Cat &assign);
+	AAnimal &operator=(const AAnimal &assign);
 
 	// Member functions
-	void makeSound() const;
+	virtual void makeSound() const = 0;
+	std::string getType() const;
 
-private:
-	Brain *_brain;
+protected:
+	std::string _type;
+
 };
+
+// Stream operators
+std::ostream &operator<<(std::ostream &stream, const AAnimal &object);
 
 #endif

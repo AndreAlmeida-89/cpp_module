@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 00:29:39 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/01 01:19:38 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/01/05 23:47:56 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ ScavTrap::ScavTrap()
 
 ScavTrap::ScavTrap(std::string name)
 {
-	_name = name;
-	_hitPoints = 100;
-	_energyPoints = 50;
-	_attackDamage = 20;
+	setName(name);
+	ClapTrap::setHitPoints(100);
+	setEnergyPoints(50);
+	setattackDamage(20);
 	std::cout << "\e[0;33mFields Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
@@ -55,4 +55,18 @@ void ScavTrap::guardGate()
 void ScavTrap::attack(std::string const &target)
 {
 	std::cout << "ScavTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
+}
+
+int ScavTrap::getHitPoints() const
+{
+	std::cout << "hello!" << std::endl;
+	return ClapTrap::getHitPoints();
+}
+
+void ScavTrap::setHitPoints(int hitPoints)
+{
+	if (hitPoints > 80)
+		ClapTrap::setHitPoints(500);
+	else
+		ClapTrap::setHitPoints(hitPoints);
 }

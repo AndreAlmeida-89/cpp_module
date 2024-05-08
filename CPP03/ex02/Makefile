@@ -6,7 +6,7 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2023/09/30 14:18:14 by andde-so         ###   ########.fr        #
+#    Updated: 2024/01/05 23:12:26 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS	= -Wall -Wextra -Werror
 
 STD		= -std=c++98
 
-CC		= c++
+CC		= g++
 
 RM		= rm -f
 
