@@ -30,12 +30,35 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+const char *ShrubberyCreationForm::UnableToOpenFile::what() const throw()
 {
-	
-	_checkIfCanEexecute(executor);
-	std::cout << "execute by " << executor.getName() << "\n";
+	return "[!] Unable to open file!";
 }
 
-const int ShrubberyCreationForm::_gradeRequiredToSign = 25;
-const int ShrubberyCreationForm::_gradeRequiredToExecute = 5;
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+{
+	_checkIfCanEexecute(executor);
+	const std::string fileName = executor.getName() + "_shrubbery";
+	std::ofstream myfile(fileName.c_str());
+	if (myfile.is_open())
+	{
+		const size_t height = 20;
+		size_t spacesPerLevel = height - 1;
+		for (size_t level = 0; level < height; level++)
+		{
+			for (size_t i = 0; i < spacesPerLevel; i++)
+				myfile << " ";
+			for (size_t i = 0; i < 2 * level + 1; i++)
+				myfile << "#";
+			if (level != height - 1)
+				myfile << std::endl;
+			spacesPerLevel--;
+		}
+		myfile.close();
+	}
+	else
+		throw UnableToOpenFile();
+}
+
+const int ShrubberyCreationForm::_gradeRequiredToSign = 145;
+const int ShrubberyCreationForm::_gradeRequiredToExecute = 137;

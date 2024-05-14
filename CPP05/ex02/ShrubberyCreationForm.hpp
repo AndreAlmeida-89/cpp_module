@@ -3,6 +3,8 @@
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include <iostream>
+#include <fstream>
 
 class Bureaucrat;
 
@@ -19,11 +21,15 @@ public:
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &assingn);
 
 	void execute(Bureaucrat const &executor) const;
-	
 
 private:
 	static const int _gradeRequiredToSign;
 	static const int _gradeRequiredToExecute;
+
+	class UnableToOpenFile : public std::exception
+	{
+		virtual const char *what() const throw();
+	};
 };
 
 #endif // SHRUBBERY_CREATION_FORM_HPP

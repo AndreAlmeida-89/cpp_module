@@ -11,7 +11,7 @@ int main()
 		try
 		{
 
-			// f.beSigned(b);
+			b.signForm(f);
 			f.execute(b);
 		}
 		catch (const std::exception &e)
