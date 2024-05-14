@@ -1,16 +1,19 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Unnamed",
+													   "NoTarget",
 													   _gradeRequiredToSign,
 													   _gradeRequiredToExecute)
 {
+	std::cout << "\e[0;33mDefault Constructor called of ShrubberyCreationForm\e[0m" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string name) : AForm(name,
-																			 _gradeRequiredToSign,
-																			 _gradeRequiredToExecute)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("Unnamed",
+																			   target,
+																			   _gradeRequiredToSign,
+																			   _gradeRequiredToExecute)
 {
-	std::cout << "\e[0;33mDefault Constructor called of ShrubberyCreationForm\e[0m" << std::endl;
+	std::cout << "\e[0;33mFields Constructor called of ShrubberyCreationForm\e[0m" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) : AForm(copy)
@@ -38,7 +41,7 @@ const char *ShrubberyCreationForm::UnableToOpenFile::what() const throw()
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	_checkIfCanEexecute(executor);
-	const std::string fileName = executor.getName() + "_shrubbery";
+	const std::string fileName = getTarget() + "_shrubbery";
 	std::ofstream myfile(fileName.c_str());
 	if (myfile.is_open())
 	{

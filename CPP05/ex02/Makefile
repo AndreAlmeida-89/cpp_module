@@ -6,7 +6,7 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2024/05/13 21:58:03 by andde-so         ###   ########.fr        #
+#    Updated: 2024/05/14 13:32:33 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME	= cpp05_ex02
 SRC		=	AForm.cpp					\
 			Bureaucrat.cpp				\
 			ShrubberyCreationForm.cpp	\
+			RobotomyRequestForm.cpp		\
+			PresidentialPardonForm.cpp	\
 			main.cpp
 
 

@@ -2,6 +2,7 @@
 
 // Constructors
 AForm::AForm() : _name("Unnamed"),
+				 _target("NoTarget"),
 				 _isSigned(false),
 				 _gradeRequiredToSign(_minGrade),
 				 _gradeRequiredToExecute(_minGrade)
@@ -11,6 +12,7 @@ AForm::AForm() : _name("Unnamed"),
 }
 
 AForm::AForm(const AForm &copy) : _name(copy.getName()),
+								  _target(copy.getTarget()),
 								  _isSigned(copy.getIsSigned()),
 								  _gradeRequiredToSign(copy.getGradeRequiredToSign()),
 								  _gradeRequiredToExecute(copy.getGradeRequiredToExecute())
@@ -20,8 +22,10 @@ AForm::AForm(const AForm &copy) : _name(copy.getName()),
 }
 
 AForm::AForm(const std::string name,
+			 const std::string target,
 			 const int gradeRequiredToSign,
 			 const int gradeRequiredToExecute) : _name(name),
+												 _target(target),
 												 _isSigned(false),
 												 _gradeRequiredToSign(gradeRequiredToSign),
 												 _gradeRequiredToExecute(gradeRequiredToExecute)
@@ -48,6 +52,11 @@ AForm &AForm::operator=(const AForm &assign)
 std::string AForm::getName() const
 {
 	return _name;
+}
+
+std::string AForm::getTarget() const
+{
+	return _target;
 }
 
 bool AForm::getIsSigned() const

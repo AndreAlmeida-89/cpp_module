@@ -14,6 +14,7 @@ public:
 	AForm();
 	AForm(const AForm &copy);
 	AForm(const std::string name,
+		  const std::string target,
 		  const int gradeRequiredToSign,
 		  const int gradeRequiredToExecute);
 
@@ -25,6 +26,7 @@ public:
 
 	// Getters / Setters
 	std::string getName() const;
+	std::string getTarget() const;
 	bool getIsSigned() const;
 	int getGradeRequiredToSign() const;
 	int getGradeRequiredToExecute() const;
@@ -51,6 +53,7 @@ public:
 
 private:
 	const std::string _name;
+	const std::string _target;
 	bool _isSigned;
 	const int _gradeRequiredToSign;
 	const int _gradeRequiredToExecute;
