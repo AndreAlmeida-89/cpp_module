@@ -10,9 +10,8 @@ int main()
 		Bureaucrat b = Bureaucrat(43, "John");
 		try
 		{
-
 			b.signForm(f);
-			f.execute(b);
+			b.execueteForm(f);
 		}
 		catch (const std::exception &e)
 		{

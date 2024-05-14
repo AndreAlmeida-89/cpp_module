@@ -29,6 +29,7 @@ public:
 	void incrementGrade();
 	void decrementGrade();
 	void signForm(AForm &form);
+	void execueteForm(AForm const &form);
 
 	// Exceptions
 	class GradeTooHighException : public std::exception
