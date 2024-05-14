@@ -1,15 +1,25 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main()
 {
-	// {
-	// 	AForm f = AForm("f1", 42, 2);
-	// 	Bureaucrat b = Bureaucrat(43, "John");
-	// 	b.signForm(f);
-	// 	std::cout << b;
-	// 	std::cout << f;
-	// }
+	{
+		ShrubberyCreationForm f = ShrubberyCreationForm("f1");
+		Bureaucrat b = Bureaucrat(43, "John");
+		b.signForm(f);
+		try
+		{
+			f.beSigned(b);
+		}
+		catch (const std::exception &e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+
+		std::cout << b;
+		std::cout << f;
+	}
 	// {
 	// 	AForm f = AForm("f1", 42, 2);
 	// 	Bureaucrat b = Bureaucrat(42, "John");

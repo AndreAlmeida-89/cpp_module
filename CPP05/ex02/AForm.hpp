@@ -15,10 +15,10 @@ public:
 	AForm(const AForm &copy);
 	AForm(const std::string name,
 		  const int gradeRequiredToSign,
-		  int gradeRequiredToExecute);
+		  const int gradeRequiredToExecute);
 
 	// Destructor
-	~AForm();
+	virtual ~AForm();
 
 	// Operators
 	AForm &operator=(const AForm &assign);
@@ -31,7 +31,7 @@ public:
 
 	// Member functions
 	void beSigned(Bureaucrat &bureaucrat);
-	virtual void execute(Bureaucrat const &executor) = 0;
+	virtual void execute(Bureaucrat const &executor) const throw() = 0;
 
 	// Exceptions
 	class GradeTooHighException : public std::exception

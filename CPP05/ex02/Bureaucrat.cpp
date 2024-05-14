@@ -106,6 +106,11 @@ std::ostream &operator<<(std::ostream &stream, const Bureaucrat &object)
 	return stream;
 }
 
+// std::ostream &operator<<(std::ostream &stream, const Bureaucrat &object)
+// {
+
+// }
+
 // Static variables
 const int Bureaucrat::_maxGrade = 1;
 const int Bureaucrat::_minGrade = 150;

@@ -2,29 +2,29 @@
 
 // Constructors
 AForm::AForm() : _name("Unnamed"),
-			   _isSigned(false),
-			   _gradeRequiredToSign(_minGrade),
-			   _gradeRequiredToExecute(_minGrade)
+				 _isSigned(false),
+				 _gradeRequiredToSign(_minGrade),
+				 _gradeRequiredToExecute(_minGrade)
 {
 	_checkGradeRequiredToSign();
 	std::cout << "\e[0;33mDefault Constructor called of AForm\e[0m" << std::endl;
 }
 
 AForm::AForm(const AForm &copy) : _name(copy.getName()),
-							   _isSigned(copy.getIsSigned()),
-							   _gradeRequiredToSign(copy.getGradeRequiredToSign()),
-							   _gradeRequiredToExecute(copy.getGradeRequiredToExecute())
+								  _isSigned(copy.getIsSigned()),
+								  _gradeRequiredToSign(copy.getGradeRequiredToSign()),
+								  _gradeRequiredToExecute(copy.getGradeRequiredToExecute())
 {
 	_checkGradeRequiredToSign();
 	std::cout << "\e[0;33mCopy Constructor called of AForm\e[0m" << std::endl;
 }
 
 AForm::AForm(const std::string name,
-		   const int gradeRequiredToSign,
-		   int gradeRequiredToExecute) : _name(name),
-										 _isSigned(false),
-										 _gradeRequiredToSign(gradeRequiredToSign),
-										 _gradeRequiredToExecute(gradeRequiredToExecute)
+			 const int gradeRequiredToSign,
+			 const int gradeRequiredToExecute) : _name(name),
+												 _isSigned(false),
+												 _gradeRequiredToSign(gradeRequiredToSign),
+												 _gradeRequiredToExecute(gradeRequiredToExecute)
 {
 	_checkGradeRequiredToSign();
 	std::cout << "\e[0;33mFields Constructor called of AForm\e[0m" << std::endl;
@@ -39,7 +39,8 @@ AForm::~AForm()
 // Operators
 AForm &AForm::operator=(const AForm &assign)
 {
-	_isSigned = assign.getIsSigned();
+	if (this != &assign)
+		_isSigned = assign.getIsSigned();
 	return *this;
 }
 
