@@ -1,6 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm",
+RobotomyRequestForm::RobotomyRequestForm() : AForm("robotomy request",
 												   "NoTarget",
 												   _gradeRequiredToSign,
 												   _gradeRequiredToExecute)
@@ -8,7 +8,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm",
 	std::cout << "\e[0;33mDefault Constructor called of RobotomyRequestForm\e[0m" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("RobotomyRequestForm",
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("robotomy request",
 																		   target,
 																		   _gradeRequiredToSign,
 																		   _gradeRequiredToExecute)
@@ -44,7 +44,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	_checkIfCanEexecute(executor);
 	srand(time(0));
 	if (rand() % 2)
-		std::cout << getTarget() << "as been robotomized." << std::endl;
+		std::cout << getTarget() << " has been robotomized." << std::endl;
 	else
 		throw UnableToRobotomize();
 }

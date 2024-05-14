@@ -3,7 +3,12 @@
 
 #include <iostream>
 #include <string>
-#include "AForm.cpp"
+#include "AForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+
+// class AForm;
 
 class Intern
 {
@@ -18,10 +23,22 @@ public:
 	// Operators
 	Intern &operator=(const Intern &assign);
 
-	//Member function
+	// Member function
 	AForm *makeForm(std::string name, std::string target);
 
 private:
+	enum FormType
+	{
+		ROBOTOMY_REQUEST = 0,
+		PRESIDENTIAL_PARDON,
+		SHRUBBERY_CREATION,
+		NUM_OF_FORM_TYPES
+	};
+
+	class FormNameDoesNotExist : public std::exception
+	{
+		virtual const char *what() const throw();
+	};
 };
 
 #endif

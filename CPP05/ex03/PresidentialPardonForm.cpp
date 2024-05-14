@@ -1,6 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm",
+PresidentialPardonForm::PresidentialPardonForm() : AForm("presidential pardon",
 														 "NoTarget",
 														 _gradeRequiredToSign,
 														 _gradeRequiredToExecute)
@@ -8,7 +8,7 @@ PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm
 	std::cout << "\e[0;33mDefault Constructor called of PresidentialPardonForm\e[0m" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm",
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("presidential pardon",
 																				 target,
 																				 _gradeRequiredToSign,
 																				 _gradeRequiredToExecute)
@@ -33,7 +33,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 		AForm::operator=(assingn);
 	return (*this);
 }
-
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
