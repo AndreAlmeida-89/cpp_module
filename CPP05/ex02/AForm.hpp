@@ -31,14 +31,20 @@ public:
 
 	// Member functions
 	void beSigned(Bureaucrat &bureaucrat);
-	virtual void execute(Bureaucrat const &executor) const throw() = 0;
+	virtual void execute(Bureaucrat const &executor) const = 0;
 
 	// Exceptions
 	class GradeTooHighException : public std::exception
 	{
 		virtual const char *what() const throw();
 	};
+
 	class GradeTooLowException : public std::exception
+	{
+		virtual const char *what() const throw();
+	};
+
+	class FormIsNotSigned : public std::exception
 	{
 		virtual const char *what() const throw();
 	};
@@ -49,10 +55,14 @@ private:
 	const int _gradeRequiredToSign;
 	const int _gradeRequiredToExecute;
 	void _checkGradeRequiredToSign() const;
+	void _checkIfCanEexecute() const;
 
 	// Static
 	static const int _maxGrade;
 	static const int _minGrade;
+
+protected:
+	void _checkIfCanEexecute(Bureaucrat const &executor) const;
 };
 
 // Stream operators

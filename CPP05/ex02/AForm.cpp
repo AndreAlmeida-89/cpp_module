@@ -81,14 +81,28 @@ void AForm::_checkGradeRequiredToSign() const
 		throw GradeTooLowException();
 }
 
+void AForm::_checkIfCanEexecute(Bureaucrat const &executor) const
+{
+	if (executor.getGrade() > _gradeRequiredToExecute)
+		throw GradeTooLowException();
+	if (getIsSigned() == false)
+		throw FormIsNotSigned();
+}
+
 // Exceptions
 const char *AForm::GradeTooHighException::what() const throw()
 {
 	return "[!] Grade is too high!";
 }
+
 const char *AForm::GradeTooLowException::what() const throw()
 {
-	return "[!] Grade is too low";
+	return "[!] Grade is too low!";
+}
+
+const char *AForm::FormIsNotSigned::what() const throw()
+{
+	return "[!] Form is not signed!";
 }
 
 // Stream operators

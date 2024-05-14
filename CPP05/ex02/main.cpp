@@ -5,12 +5,14 @@
 int main()
 {
 	{
+
 		ShrubberyCreationForm f = ShrubberyCreationForm("f1");
 		Bureaucrat b = Bureaucrat(43, "John");
-		b.signForm(f);
 		try
 		{
-			f.beSigned(b);
+
+			// f.beSigned(b);
+			f.execute(b);
 		}
 		catch (const std::exception &e)
 		{

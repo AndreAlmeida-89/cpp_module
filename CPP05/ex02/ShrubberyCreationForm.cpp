@@ -30,8 +30,10 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const throw()
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
+	
+	_checkIfCanEexecute(executor);
 	std::cout << "execute by " << executor.getName() << "\n";
 }
 

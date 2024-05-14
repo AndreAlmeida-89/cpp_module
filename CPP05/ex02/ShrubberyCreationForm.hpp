@@ -18,7 +18,7 @@ public:
 
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &assingn);
 
-	void execute(Bureaucrat const &executor) const throw();
+	void execute(Bureaucrat const &executor) const;
 
 private:
 	static const int _gradeRequiredToSign;
