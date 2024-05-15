@@ -19,9 +19,16 @@ ScalarConverter::~ScalarConverter()
 	std::cout << "\e[0;31mDestructor called of ScalarConverter\e[0m" << std::endl;
 }
 
+// Operators
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &assign)
+{
+	(void)assign;
+	return *this;
+}
+
+// Member functions
 void ScalarConverter::convert(const std::string &_literal)
 {
-
 	try
 	{
 		std::string literal = _literal;
@@ -30,7 +37,7 @@ void ScalarConverter::convert(const std::string &_literal)
 		try
 		{
 			int i = std::stoi(literal);
-			char c = i;
+			char c = static_cast<char>(i);
 			if (std::isprint(c))
 			{
 				std::cout << "char: '" << c << "'" << std::endl;
@@ -46,16 +53,6 @@ void ScalarConverter::convert(const std::string &_literal)
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
 		}
-
-		// try
-		// {
-		// 	int i = std::stoi(literal);
-		// 	std::cout << "int: " << i << std::endl;
-		// }
-		// catch (std::exception &e)
-		// {
-		// 	std::cout << "int: impossible" << std::endl;
-		// }
 
 		try
 		{
@@ -81,11 +78,4 @@ void ScalarConverter::convert(const std::string &_literal)
 	{
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
-}
-
-// Operators
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &assign)
-{
-	(void)assign;
-	return *this;
 }

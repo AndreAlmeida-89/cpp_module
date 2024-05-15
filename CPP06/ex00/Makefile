@@ -6,7 +6,7 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2024/05/14 22:21:45 by andde-so         ###   ########.fr        #
+#    Updated: 2024/05/14 22:24:07 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,5 +48,6 @@ run: re
 	./$(NAME) 42.0f
 	./$(NAME) "*"
 	./$(NAME) a
+	./$(NAME) 42 42
 
 .PHONY: all clean fclean re run test
