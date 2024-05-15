@@ -1,5 +1,4 @@
 #include "ScalarConverter.hpp"
-#include <iomanip>
 
 // Constructors
 ScalarConverter::ScalarConverter()
@@ -26,26 +25,76 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &assign)
 	return *this;
 }
 
+bool ScalarConverter::_isChar(std::string &literal)
+{
+	if (literal.length() == 1 && std::isprint(literal[0]) && !std::isdigit(literal[0]))
+	{
+		std::stringstream ss;
+		ss << static_cast<int>(literal[0]);
+		literal = ss.str();
+		return (true);
+	}
+	return (false);
+}
+
+bool ScalarConverter::_isPseudoLiterals(const std::string &literal)
+{
+	const size_t numOfPseudoLiterails = 8;
+	const std::string pseudoLiterals[8] = {
+		"inff"
+		"+inff",
+		"-inff",
+		"nanf",
+		"inf",
+		"+inf",
+		"-inf",
+		"nan",
+	};
+	for (size_t i = 0; i < numOfPseudoLiterails; i++)
+		if (pseudoLiterals[i] == literal)
+			return (true);
+	return (false);
+}
+
+bool ScalarConverter::_isDigit(const std::string &literal)
+{
+	if (_isPseudoLiterals(literal))
+		return (true);
+	const char *str = literal.c_str();
+	size_t i = 0;
+	while (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] == '.' || str[i] == 'f')
+		{
+			i++;
+			continue;
+		}
+		if (!std::isdigit(str[i++]))
+			return (false);
+	}
+	return (true);
+}
+
 // Member functions
 void ScalarConverter::convert(const std::string &_literal)
 {
 	try
 	{
 		std::string literal = _literal;
-		if (_literal.length() == 1 && std::isprint(_literal.front()) && !std::isdigit(_literal.front()))
-			literal = std::to_string(_literal.front());
+		if (!_isChar(literal) && !_isDigit(literal))
+			throw std::exception();
 		try
 		{
-			int i = std::stoi(literal);
+			if (_isPseudoLiterals(literal))
+				throw std::exception();
+			int i = std::atoi(literal.c_str());
 			char c = static_cast<char>(i);
 			if (std::isprint(c))
-			{
 				std::cout << "char: '" << c << "'" << std::endl;
-			}
 			else
-			{
 				std::cout << "char: Non displayable" << std::endl;
-			}
 			std::cout << "int: " << i << std::endl;
 		}
 		catch (std::exception &e)
@@ -56,7 +105,7 @@ void ScalarConverter::convert(const std::string &_literal)
 
 		try
 		{
-			float f = std::stof(literal);
+			float f = std::atof(literal.c_str());
 			std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
 		}
 		catch (std::exception &e)
@@ -66,7 +115,7 @@ void ScalarConverter::convert(const std::string &_literal)
 
 		try
 		{
-			double d = std::stod(literal);
+			double d = std::atof(literal.c_str());
 			std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
 		}
 		catch (std::exception &e)
@@ -76,6 +125,9 @@ void ScalarConverter::convert(const std::string &_literal)
 	}
 	catch (std::exception &e)
 	{
-		std::cerr << "Error: " << e.what() << std::endl;
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
 	}
 }

@@ -5,15 +5,17 @@
 #include <string>
 #include "Data.hpp"
 
+typedef unsigned long int uintptr_t;
+
 class Serializer
 {
 public:
 	// Destructor
 	~Serializer();
 
-	//Member functions
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
+	// Member functions
+	static uintptr_t serialize(Data *ptr);
+	static Data *deserialize(uintptr_t raw);
 
 private:
 	// Constructors

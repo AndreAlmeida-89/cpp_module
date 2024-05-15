@@ -3,6 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <stdlib.h>
+#include <sstream>
+
 
 class ScalarConverter
 {
@@ -19,6 +23,11 @@ private:
 	ScalarConverter(const ScalarConverter &copy);
 	// Operators
 	ScalarConverter &operator=(const ScalarConverter &assign);
+
+	// Member Functions
+	static bool _isDigit(const std::string &literal);
+	static bool _isPseudoLiterals(const std::string &literal);
+	static bool _isChar(std::string &literal);
 };
 
 #endif
