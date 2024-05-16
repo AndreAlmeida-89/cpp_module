@@ -82,12 +82,12 @@ private:
 
 // Stream operators
 template <typename T>
-std::ostream &operator<<(std::ostream &stream, const Array<T> &object)
+std::ostream &operator<<(std::ostream &stream, const Array<T> &array)
 {
-	for (unsigned int i = 0; i < object.size(); i++)
+	for (unsigned int i = 0; i < array.size(); i++)
 	{
-		stream << object[i];
-		if (i != object.size() - 1)
+		stream << array[i];
+		if (i != array.size() - 1)
 			stream << " ";
 	}
 	return stream;
