@@ -43,9 +43,9 @@ void BitcoinExchange::calculateBTCAmoutByDate(const std::string &inputFileName)
 					else
 					{
 						std::strftime(dateBuffer, sizeof(dateBuffer), "%Y-%m-%d", &date);
-						float value = dataBase[date];
-						std::cout << value << std::endl;
-						std::cout << std::fixed << std::setprecision(2);
+						time_t time = mktime(&date);
+						float value = _findValueByDate(dataBase, time);
+						std::cout << std::fixed << std::setprecision(1);
 						std::cout << dateBuffer << " => " << ammount << " = " << value * ammount << std::endl;
 					}
 				}
@@ -83,14 +83,32 @@ const BitcoinExchange::Map BitcoinExchange::_parseDataBase()
 			char *next = strptime(line.c_str(), "%Y-%m-%d,", &date);
 			if (next && sscanf(next, "%f", &value) == 1)
 			{
-				// std::cout << value << std::endl;
-				dataBaseMap[date] = value;
+				time_t time = mktime(&date);
+				dataBaseMap.insert(std::make_pair(time, value));
 			}
 		}
 		file.close();
 		return dataBaseMap;
 	}
 	throw UnableToOpenFile();
+}
+
+float BitcoinExchange::_findValueByDate(BitcoinExchange::Map &map, time_t key)
+{
+	Map::iterator it = map.find(key);
+	if (it != map.end())
+		return it->second;
+	else
+	{
+		it = map.lower_bound(key);
+		if (it == map.begin())
+			return 0.0;
+		else
+		{
+			--it;
+			return it->second;
+		}
+	}
 }
 
 const char *BitcoinExchange::UnableToOpenFile::what() const throw()

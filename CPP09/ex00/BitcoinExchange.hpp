@@ -21,7 +21,7 @@ private:
 	// Type definitions
 	struct DateComparator;
 	typedef struct tm Date;
-	typedef std::map<Date, float, DateComparator> Map;
+	typedef std::multimap<time_t, float> Map;
 
 	// Constructors
 	BitcoinExchange();
@@ -33,6 +33,7 @@ private:
 	// Class F
 	static const std::string dataBaseFileNale;
 	static const BitcoinExchange::Map _parseDataBase();
+	static float _findValueByDate(BitcoinExchange::Map &myMap, time_t key);
 
 	// Exceptions
 	class UnableToOpenFile : public std::exception
