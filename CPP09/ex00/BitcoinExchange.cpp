@@ -22,38 +22,25 @@ void BitcoinExchange::calculateBTCAmoutByDate(const std::string &inputFileName)
 {
 	try
 	{
-		Map dataBase = _parseDataBase();
-		std::ifstream file(inputFileName.c_str());
-		if (file.is_open())
+		Map dataBase = _parseData(_dataBaseFileName, ", ");
+		Map inputData = _parseData(inputFileName, " |");
+		Map::const_iterator it = inputData.begin();
+
+		while (it != inputData.end())
 		{
-			std::string line;
-			getline(file, line);
-			while (getline(file, line))
+			float ammount = it->second;
+			if (ammount < 0.0f)
+				std::cout << "Error: not a positive number." << std::endl;
+			else if (ammount > 1000.0f)
+				std::cout << "Error: too large a number." << std::endl;
+			else
 			{
-				Date date;
-				float ammount = 0;
-				char dateBuffer[100];
-				char *next = strptime(line.c_str(), "%Y-%m-%d |", &date);
-				if (next && sscanf(next, "%f", &ammount) == 1)
-				{
-					if (ammount < 0.0f)
-						std::cout << "Error: not a positive number." << std::endl;
-					else if (ammount > 1000.0f)
-						std::cout << "Error: too large a number." << std::endl;
-					else
-					{
-						std::strftime(dateBuffer, sizeof(dateBuffer), "%Y-%m-%d", &date);
-						time_t time = mktime(&date);
-						float value = _findValueByDate(dataBase, time);
-						std::cout << std::fixed << std::setprecision(1);
-						std::cout << dateBuffer << " => " << ammount << " = " << value * ammount << std::endl;
-					}
-				}
+				time_t time = it->first;
+				float value = _findValueByDate(dataBase, time);
+				std::cout << _timeToString(time) << " => " << ammount << " = " << value * ammount << std::endl;
 			}
-			file.close();
+			it++;
 		}
-		else
-			throw UnableToOpenFile();
 	}
 	catch (const std::exception &e)
 	{
@@ -68,27 +55,26 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &assign)
 	return *this;
 }
 
-const BitcoinExchange::Map BitcoinExchange::_parseDataBase()
+const BitcoinExchange::Map BitcoinExchange::_parseData(const std::string &fileName,
+													   const std::string &separator)
 {
-	std::ifstream file(dataBaseFileNale.c_str());
+	std::ifstream file(fileName.c_str());
 	if (file.is_open())
 	{
-		Map dataBaseMap = Map();
+		Map map = Map();
 		std::string line;
 		getline(file, line);
 		while (getline(file, line))
 		{
-			Date date;
+			tm date;
 			float value;
-			char *next = strptime(line.c_str(), "%Y-%m-%d,", &date);
+			char *next = strptime(line.c_str(), ("%Y-%m-%d" + separator).c_str(), &date);
+			time_t time = mktime(&date);
 			if (next && sscanf(next, "%f", &value) == 1)
-			{
-				time_t time = mktime(&date);
-				dataBaseMap.insert(std::make_pair(time, value));
-			}
+				map.insert(std::make_pair(time, value));
 		}
 		file.close();
-		return dataBaseMap;
+		return map;
 	}
 	throw UnableToOpenFile();
 }
@@ -111,9 +97,19 @@ float BitcoinExchange::_findValueByDate(BitcoinExchange::Map &map, time_t key)
 	}
 }
 
+std::string BitcoinExchange::_timeToString(std::time_t time)
+{
+	struct tm *timeinfo;
+	char buffer[80];
+
+	timeinfo = localtime(&time);
+	strftime(buffer, sizeof(buffer), "%Y-%m-%d", timeinfo);
+	return std::string(buffer);
+}
+
 const char *BitcoinExchange::UnableToOpenFile::what() const throw()
 {
-	return "[!] File can not be opened.";
+	return "Error: could not open file.";
 }
 
 const char *BitcoinExchange::InvalidInputValue::what() const throw()
@@ -121,9 +117,4 @@ const char *BitcoinExchange::InvalidInputValue::what() const throw()
 	return "[!] Invalid input value.";
 }
 
-bool BitcoinExchange::DateComparator::operator()(const Date &lhs, const Date &rhs) const
-{
-	return mktime(const_cast<Date *>(&lhs)) < mktime(const_cast<Date *>(&rhs));
-}
-
-const std::string BitcoinExchange::dataBaseFileNale = "data.csv";
+const std::string BitcoinExchange::_dataBaseFileName = "data.csv";

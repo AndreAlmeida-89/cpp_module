@@ -6,7 +6,7 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2024/05/17 09:00:47 by andde-so         ###   ########.fr        #
+#    Updated: 2024/05/17 14:55:32 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,6 @@ fclean: clean
 re:	fclean all
 
 run: re
-	./$(NAME)
+	./$(NAME) input.txt
 
 .PHONY: all clean fclean re run test

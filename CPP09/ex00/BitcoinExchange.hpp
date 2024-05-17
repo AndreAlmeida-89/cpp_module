@@ -8,7 +8,6 @@
 #include <fstream>
 #include <iomanip>
 
-
 class BitcoinExchange
 {
 public:
@@ -19,8 +18,6 @@ public:
 
 private:
 	// Type definitions
-	struct DateComparator;
-	typedef struct tm Date;
 	typedef std::multimap<time_t, float> Map;
 
 	// Constructors
@@ -31,9 +28,11 @@ private:
 	BitcoinExchange &operator=(const BitcoinExchange &assign);
 
 	// Class F
-	static const std::string dataBaseFileNale;
-	static const BitcoinExchange::Map _parseDataBase();
+	static const std::string _dataBaseFileName;
+	static const BitcoinExchange::Map _parseData(const std::string &fileName,
+												 const std::string &separator);
 	static float _findValueByDate(BitcoinExchange::Map &myMap, time_t key);
+	static std::string _timeToString(std::time_t time);
 
 	// Exceptions
 	class UnableToOpenFile : public std::exception
@@ -45,13 +44,6 @@ private:
 	{
 		virtual const char *what() const throw();
 	};
-
-	// Struct
-	struct DateComparator
-	{
-		bool operator()(const Date &lhs, const Date &rhs) const;
-	};
-
 };
 
 #endif
