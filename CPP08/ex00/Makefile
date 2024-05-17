@@ -6,11 +6,11 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2024/05/15 23:57:49 by andde-so         ###   ########.fr        #
+#    Updated: 2024/05/16 23:59:07 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= template
+NAME	= easyfind
 
 SRC		= main.cpp
 

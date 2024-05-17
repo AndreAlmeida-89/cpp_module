@@ -6,11 +6,11 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2024/05/16 13:51:08 by andde-so         ###   ########.fr        #
+#    Updated: 2024/05/16 23:58:54 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= template
+NAME	= span
 
 SRC		=	main.cpp \
 			Span.cpp

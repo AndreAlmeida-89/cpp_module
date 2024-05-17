@@ -38,7 +38,7 @@ unsigned int Span::getN() const
 	return _n;
 }
 
-Vector Span::getVector() const
+const Vector &Span::getVector() const
 {
 	return _vector;
 }
@@ -51,24 +51,17 @@ void Span::addNumber(int number)
 	_vector.push_back(number);
 }
 
-
 unsigned int Span::shortestSpan() const
 {
 	_checkForErrors();
 	int min = longestSpan();
-	size_t size = _vector.size();
-	size_t i = 0;
-	while (i < size - 1)
+	Vector copy(_vector);
+	std::sort(copy.begin(), copy.end());
+	for (size_t i = 1; i < copy.size(); ++i)
 	{
-		size_t j = i + 1;
-		while (j < size)
-		{
-			int distance = std::abs(_vector[i] - _vector[j]);
-			if (distance < min)
-				min = distance;
-			j++;
-		}
-		i++;
+		int diff = copy[i] - copy[i - 1];
+		if (diff < min)
+			min = diff;
 	}
 	return static_cast<unsigned int>(min);
 }
@@ -107,7 +100,6 @@ const char *Span::OnlyOneNumberStored::what() const throw()
 std::ostream &operator<<(std::ostream &stream, const Span &span)
 {
 	std::vector<int> vector = span.getVector();
-
 	for (unsigned int i = 0; i < vector.size(); i++)
 	{
 		stream << vector[i];

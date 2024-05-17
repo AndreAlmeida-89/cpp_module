@@ -31,7 +31,7 @@ public:
 
 	// Getters / Setters
 	unsigned int getN() const;
-	Vector getVector() const;
+	const Vector &getVector() const;
 
 	// Exceptions
 	class SpanIsFull : public std::exception
