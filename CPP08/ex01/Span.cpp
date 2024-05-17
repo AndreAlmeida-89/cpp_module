@@ -99,7 +99,7 @@ const char *Span::OnlyOneNumberStored::what() const throw()
 // Stream operators
 std::ostream &operator<<(std::ostream &stream, const Span &span)
 {
-	std::vector<int> vector = span.getVector();
+	Vector vector = span.getVector();
 	for (unsigned int i = 0; i < vector.size(); i++)
 	{
 		stream << vector[i];
