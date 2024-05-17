@@ -4,10 +4,12 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <deque>
 
 template <typename T>
-class MutantStack : public std::stack<T>
+class MutantStack : public std::stack< T, std::deque<T> >
 {
+
 public:
 	// Constructors
 	MutantStack() : std::stack<T>()
@@ -29,8 +31,20 @@ public:
 	MutantStack &operator=(const MutantStack &assign)
 	{
 		if (*this != assign)
-			std::stack<T>::operator=(assign);
+			*this = std::stack<T>::operator=(assign);
 		return *this;
+	}
+
+	typedef typename std::deque<T>::iterator iterator;
+	
+	iterator begin()
+	{
+		return this->c.begin();
+	}
+
+	iterator end()
+	{
+		return this->c.end();
 	}
 
 private:

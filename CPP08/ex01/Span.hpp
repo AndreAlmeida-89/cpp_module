@@ -50,10 +50,12 @@ public:
 	};
 
 	template <typename T>
-	void addNumbers(T begin, T end)
+	void addNumber(T begin, T end)
 	{
-		while (begin != end)
-			addNumber(*begin++);
+		size_t size = std::distance(begin, end);
+		if ((size + _vector.size()) > _n)
+			throw SpanIsFull();
+		_vector.insert(_vector.end(), begin, end);
 	}
 
 private:

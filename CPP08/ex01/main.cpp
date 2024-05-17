@@ -43,7 +43,7 @@ int main()
 		Span sp = Span(size);
 		std::vector<int> numbers(size);
 		std::generate(numbers.begin(), numbers.end(), std::rand);
-		sp.addNumbers(numbers.begin(), numbers.end());
+		sp.addNumber(numbers.begin(), numbers.end());
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -53,7 +53,7 @@ int main()
 		std::set<int> numbers;
 		while (numbers.size() < size)
 			numbers.insert(std::rand());
-		sp.addNumbers(numbers.begin(), numbers.end());
+		sp.addNumber(numbers.begin(), numbers.end());
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
@@ -64,7 +64,7 @@ int main()
 			Span sp = Span(size);
 			std::vector<int> numbers(size + 1);
 			std::generate(numbers.begin(), numbers.end(), std::rand);
-			sp.addNumbers(numbers.begin(), numbers.end());
+			sp.addNumber(numbers.begin(), numbers.end());
 			std::cout << sp.shortestSpan() << std::endl;
 			std::cout << sp.longestSpan() << std::endl;
 		}
