@@ -2,11 +2,15 @@
 
 int main(const int argc, const char **argv)
 {
-	if (argc != 2)
+	try
 	{
-		std::cout << "Error: could not open file." << std::endl;
-		return 1;
+		if (argc != 2)
+			throw BitcoinExchange::UnableToOpenFile();
+		BitcoinExchange::calculate(argv[1]);
 	}
-	BitcoinExchange::calculateBTCAmoutByDate(argv[1]);
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	return 0;
 }

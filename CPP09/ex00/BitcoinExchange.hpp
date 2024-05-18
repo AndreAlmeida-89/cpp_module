@@ -14,11 +14,17 @@ public:
 	// Destructor
 	~BitcoinExchange();
 
-	static void calculateBTCAmoutByDate(const std::string &inputFileName);
+	static void calculate(const std::string &inputFileName);
+
+	// Exceptions
+	class UnableToOpenFile : public std::exception
+	{
+		virtual const char *what() const throw();
+	};
 
 private:
 	// Type definitions
-	typedef std::multimap<time_t, float> Map;
+	typedef std::map<time_t, float> Map;
 
 	// Constructors
 	BitcoinExchange();
@@ -27,23 +33,11 @@ private:
 	// Operators
 	BitcoinExchange &operator=(const BitcoinExchange &assign);
 
-	// Class F
+	// Static functions
 	static const std::string _dataBaseFileName;
-	static const BitcoinExchange::Map _parseData(const std::string &fileName,
-												 const std::string &separator);
+	static const BitcoinExchange::Map _parseDataBase();
 	static float _findValueByDate(BitcoinExchange::Map &myMap, time_t key);
 	static std::string _timeToString(std::time_t time);
-
-	// Exceptions
-	class UnableToOpenFile : public std::exception
-	{
-		virtual const char *what() const throw();
-	};
-
-	class InvalidInputValue : public std::exception
-	{
-		virtual const char *what() const throw();
-	};
 };
 
 #endif
