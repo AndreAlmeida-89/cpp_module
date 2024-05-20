@@ -6,14 +6,13 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2024/05/18 20:50:15 by andde-so         ###   ########.fr        #
+#    Updated: 2024/05/20 10:54:49 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= PmergeMe
 
-SRC		=	main.cpp \
-			PmergeMe.cpp
+SRC		=	main.cpp
 
 
 OBJ		= $(SRC:%.cpp=%.o)
