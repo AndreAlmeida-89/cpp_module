@@ -11,32 +11,6 @@ template <typename Container>
 class PmergeMe
 {
 public:
-	static void sort(const int argc, const char **argv)
-	{
-		if (argc < 2)
-			throw PmergeMeError();
-		Container v;
-		for (int i = 1; i < argc; i++)
-			v.push_back(std::atoi(argv[i]));
-		for (size_t i = 0; i < v.size(); i++)
-			std::cout << v[i] << " ";
-		std::cout << std::endl;
-		Container sorted = _mergeInsertionSort(v);
-		for (size_t i = 0; i < sorted.size(); i++)
-			std::cout << sorted[i] << " ";
-		std::cout << std::endl;
-	}
-
-	class PmergeMeError : public std::exception
-	{
-		const char *what() const throw()
-		{
-			return "Error";
-		}
-	};
-
-private:
-	// Constructors
 	PmergeMe()
 	{
 		std::cout << "\e[0;33mDefault Constructor called of PmergeMe\e[0m" << std::endl;
@@ -61,52 +35,282 @@ private:
 		return *this;
 	}
 
-	// typedef std::vector<int> Container;
+	typedef std::deque<std::pair<int, int> > DequePair;
 
-	static Container _mergeInsertionSort(Container &X)
+	void applyMergeInsertSort(const char **av)
 	{
-		int n = X.size();
-		if (n <= 1)
-			return X;
+		getIntegerSequence(av);
 
-		// Step 1: Group elements into pairs and handle the unpaired element
-		Container S; // Sorted sequence
-		for (int i = 0; i < n - 1; i += 2)
-			S.push_back(std::max(X[i], X[i + 1]));
-
-		if (n % 2 != 0)
-			S.push_back(X[n - 1]); // Add the unpaired element
-
-		// Step 2: Recursively sort the larger elements
-		S = _mergeInsertionSort(S);
-
-		// Step 3: Insert the paired element at the start
-		int pairedElement = X[0];
-		int insertPos = _binarySearch(S, 0, S.size() - 1, pairedElement);
-		S.insert(S.begin() + insertPos, pairedElement);
-
-		// Step 4: Insert remaining elements using binary search
-		for (int i = (n % 2 == 0) ? 1 : 2; i < n; i += 2)
+		if (container.size() == 1)
 		{
-			int insertPos = _binarySearch(S, 0, S.size() - 1, X[i]);
-			S.insert(S.begin() + insertPos, X[i]);
+			mainChain.push_back(container.front());
 		}
-		return S;
+		else
+		{
+			createDequePairs();
+			sortDequePairs();
+			mergeSort(dequePair, 0, dequePair.size() - 1);
+			createMainChainAndPend();
+			insertToMainChain();
+		}
 	}
 
-	static int _binarySearch(const Container &arr, int left, int right, int key)
+	class PmergeMeError : public std::exception
 	{
-		while (left <= right)
+		const char *what() const throw()
 		{
-			int mid = left + (right - left) / 2;
-			if (arr[mid] == key)
-				return mid;
-			else if (arr[mid] < key)
-				left = mid + 1;
-			else
-				right = mid - 1;
+			return "Error";
 		}
-		return left; // Insert after the element less than key
+	};
+
+	void printBefore()
+	{
+		for (unsigned int i = 0; i < container.size(); i++)
+			std::cout << container.at(i) << " ";
+		std::cout << std::endl;
+	}
+
+	void printAfter()
+	{
+		for (unsigned int i = 0; i < mainChain.size(); i++)
+			std::cout << mainChain.at(i) << " ";
+		std::cout << std::endl;
+	}
+
+private:
+	Container container;
+	Container positions;
+	DequePair dequePair;
+	Container mainChain;
+	Container pend;
+	Container jacobSequence;
+
+	void getIntegerSequence(const char **av)
+	{
+		int i;
+		char *ptr;
+
+		i = 1;
+		int val;
+		while (av[i])
+		{
+			if (av[i][0] == '\0')
+				throw(PmergeMeError());
+
+			val = std::strtol(av[i], &ptr, 10);
+
+			if (*ptr != '\0' || val < 0)
+				throw(PmergeMeError());
+
+			container.push_back(val);
+			i++;
+		}
+	}
+
+	void createDequePairs()
+	{
+		int size;
+		unsigned int i;
+
+		i = 0;
+		size = container.size() / 2;
+		while (size != 0)
+		{
+			dequePair.push_back(std::make_pair(container.at(i), container.at(i + 1)));
+			i += 2;
+			size--;
+		}
+	}
+
+	void sortDequePairs()
+	{
+		unsigned int i;
+		int tmp;
+
+		i = 0;
+		while (i < dequePair.size())
+		{
+			if (dequePair.at(i).first < dequePair.at(i).second)
+			{
+				tmp = dequePair.at(i).first;
+				dequePair.at(i).first = dequePair.at(i).second;
+				dequePair.at(i).second = tmp;
+			}
+			i++;
+		}
+	}
+
+	void merge(DequePair &array, int begin, int mid, int end)
+	{
+		size_t leftArrayIndex;
+		size_t rightArrayIndex;
+		size_t mergedArrayIndex;
+
+		DequePair leftArray(array.begin() + begin, array.begin() + mid + 1);
+		DequePair rightArray(array.begin() + mid + 1, array.begin() + end + 1);
+
+		leftArrayIndex = 0;
+		rightArrayIndex = 0;
+		mergedArrayIndex = begin;
+
+		while (leftArrayIndex < leftArray.size() && rightArrayIndex < rightArray.size())
+		{
+			if (leftArray[leftArrayIndex].first <= rightArray[rightArrayIndex].first)
+			{
+				array[mergedArrayIndex] = leftArray[leftArrayIndex];
+				leftArrayIndex++;
+			}
+			else
+			{
+				array[mergedArrayIndex] = rightArray[rightArrayIndex];
+				rightArrayIndex++;
+			}
+			mergedArrayIndex++;
+		}
+		while (leftArrayIndex < leftArray.size())
+		{
+			array[mergedArrayIndex] = leftArray[leftArrayIndex];
+			leftArrayIndex++;
+			mergedArrayIndex++;
+		}
+		while (rightArrayIndex < rightArray.size())
+		{
+			array[mergedArrayIndex] = rightArray[rightArrayIndex];
+			rightArrayIndex++;
+			mergedArrayIndex++;
+		}
+	}
+
+	void mergeSort(DequePair &array, int begin, int end)
+	{
+		int mid;
+
+		if (begin >= end)
+			return;
+		mid = begin + (end - begin) / 2;
+		mergeSort(array, begin, mid);
+		mergeSort(array, mid + 1, end);
+		merge(array, begin, mid, end);
+	}
+
+	void createMainChainAndPend()
+	{
+		size_t i;
+
+		mainChain.push_back(dequePair.at(0).second);
+
+		i = 0;
+		while (i < dequePair.size())
+		{
+			mainChain.push_back(dequePair.at(i).first);
+			pend.push_back(dequePair.at(i).second);
+			i++;
+		}
+	}
+
+	int binarySearch(Container array, int target, int begin, int end)
+	{
+		int mid;
+
+		while (begin <= end)
+		{
+			mid = begin + (end - begin) / 2;
+			if (target == array.at(mid))
+				return (mid);
+
+			if (target > array.at(mid))
+				begin = mid + 1;
+			else
+				end = mid - 1;
+		}
+		if (target > array.at(mid))
+			return (mid + 1);
+		else
+			return (mid);
+	}
+
+	void generateJacobInsertionSequence()
+	{
+		size_t size;
+		size_t jcobstalIndex;
+		int index;
+
+		size = pend.size();
+		index = 3;
+
+		while ((jcobstalIndex = jacobsthal(index)) < size - 1)
+		{
+			jacobSequence.push_back(jcobstalIndex);
+			index++;
+		}
+	}
+
+	int jacobsthal(int n)
+	{
+		if (n == 0)
+			return (0);
+		if (n == 1)
+			return (1);
+		return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
+	}
+
+	void generatPositions()
+	{
+		size_t val;
+		size_t pos;
+		size_t lastPos;
+
+		if (pend.empty())
+			return;
+		generateJacobInsertionSequence();
+		lastPos = 1;
+		val = 1;
+		while (!jacobSequence.empty())
+		{
+			val = jacobSequence.front();
+
+			jacobSequence.erase(jacobSequence.begin());
+			positions.push_back(val);
+
+			pos = val - 1;
+			while (pos > lastPos)
+			{
+				positions.push_back(pos);
+				pos--;
+			}
+			lastPos = val;
+		}
+		while (val++ < pend.size())
+			positions.push_back(val);
+	}
+
+	void insertToMainChain()
+	{
+		size_t pos;
+		int target;
+		size_t endPos;
+		size_t addedCount = 0;
+
+		generatPositions();
+
+		// Loop through positions using a counter
+		for (size_t i = 0; i < positions.size(); ++i)
+		{
+			target = pend.at(positions[i] - 1);
+
+			endPos = positions[i] + addedCount;
+			pos = binarySearch(mainChain, target, 0, endPos);
+			mainChain.insert(mainChain.begin() + pos, target);
+			addedCount++;
+		}
+
+		// Handle the additional element if deque size is odd
+		if (container.size() % 2 != 0)
+		{
+			target = container.at(container.size() - 1);
+			pos = binarySearch(mainChain, target, 0, mainChain.size() - 1);
+			mainChain.insert(mainChain.begin() + pos, target);
+		}
 	}
 };
 
