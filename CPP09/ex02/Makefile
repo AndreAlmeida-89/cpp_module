@@ -6,7 +6,7 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2024/05/20 12:54:26 by andde-so         ###   ########.fr        #
+#    Updated: 2024/05/20 16:07:36 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,5 @@ re:	fclean all
 run: re
 	./$(NAME) 3 5 9 7 4
 	./$(NAME) `jot -r 3000 1 100000 | tr '\n' ' '`
-
 
 .PHONY: all clean fclean re run test

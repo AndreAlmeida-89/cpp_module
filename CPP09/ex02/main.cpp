@@ -1,45 +1,28 @@
 #include "PmergeMe.hpp"
 
-#include <ctime>
 
-int main(const int ac, const char **av)
+int main(const int argc, const char **argv)
 {
-	clock_t timeVec;
-	clock_t timeDeq;
-	PmergeMe<std::deque<int> > pmVec;
-	PmergeMe<std::vector<int> > pmDeq;
+	PmergeMe<std::deque<int>, std::deque<std::pair<int, int> > > pmVec("std::deque");
+	PmergeMe<std::vector<int>, std::vector<std::pair<int, int> > > pmDeq("std::vector");
 
-	if (ac < 2)
+	if (argc < 2)
 	{
-		std::cerr << "usage: " << av[0] << " ...numbers" << std::endl;
+		std::cerr << "usage: " << argv[0] << " ...numbers" << std::endl;
 		return (1);
 	}
 
 	try
 	{
-		timeVec = clock();
-		pmVec.applyMergeInsertSort(av);
-		timeVec = clock() - timeVec;
-
-		timeDeq = clock();
-		pmDeq.applyMergeInsertSort(av);
-		timeDeq = clock() - timeDeq;
-
-		std::cout << "Before: ";
-		pmVec.printBefore();
-		std::cout << std::endl;
-
-		std::cout << "After: ";
-		pmVec.printAfter();
-		std::cout << std::endl;
-
-		std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << (float)timeVec * 1000 / CLOCKS_PER_SEC << " ms" << std::endl;
-		std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : " << (float)timeDeq * 1000 / CLOCKS_PER_SEC << " ms" << std::endl;
+		pmVec.sort(argv);
+		pmDeq.sort(argv);
+		pmVec.printInfo();
+		pmVec.printTime();
+		pmDeq.printTime();
 	}
 	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << '\n';
 	}
-
 	return 0;
 }
