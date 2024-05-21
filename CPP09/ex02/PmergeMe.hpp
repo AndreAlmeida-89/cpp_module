@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <ctime>
 
-template <typename Container, typename Pairs>
+template <typename Container>
 class PmergeMe
 {
 public:
@@ -16,31 +16,16 @@ public:
 
 	~PmergeMe() {}
 
-	// Operators
-	PmergeMe &operator=(const PmergeMe &assign)
+	void sort(const int argc, const char **argv)
 	{
-		(void)assign;
-		return *this;
-	}
-
-	void sort(const char **argv)
-	{
+		if (argc < 2)
+			throw PmergeMeError();
 		std::clock_t start = std::clock();
 		_getIntegerSequence(argv);
-
-		if (_unsorted.size() == 1)
-			_mainChain.push_back(_unsorted.front());
-		else
-		{
-			_createPairs();
-			_sortPairs();
-			_mergeSort(_pairs, 0, _pairs.size() - 1);
-			_createMainChainAndPend();
-			_insertToMainChain();
-		}
+		_result = _unsorted;
+		_mergeInsertionSort(_result);
 		std::clock_t end = std::clock();
-		double elapsedTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
-		_time = elapsedTime * 1000000;
+		_time = static_cast<double>(end - start);
 	}
 
 	class PmergeMeError : public std::exception
@@ -58,14 +43,14 @@ public:
 			std::cout << _unsorted.at(i) << " ";
 		std::cout << std::endl;
 		std::cout << "After: ";
-		for (unsigned int i = 0; i < _mainChain.size(); i++)
-			std::cout << _mainChain.at(i) << " ";
+		for (unsigned int i = 0; i < _result.size(); i++)
+			std::cout << _result.at(i) << " ";
 		std::cout << std::endl;
 	}
 
 	void printTime()
 	{
-		if (_mainChain.size() != _unsorted.size() || !std::is_sorted(_mainChain.begin(), _mainChain.end()))
+		if (_result.size() != _unsorted.size() || !std::is_sorted(_result.begin(), _result.end()))
 			throw PmergeMeError();
 		std::cout << "Time to process a range of "
 				  << _unsorted.size()
@@ -78,19 +63,52 @@ public:
 
 private:
 	Container _unsorted;
-	Container _positions;
-	Pairs _pairs;
-	Container _mainChain;
-	Container _pend;
-	Container _jacobSequence;
+	Container _result;
 	double _time;
 	std::string _typeName;
 
-	PmergeMe() : _time(0.0) {}
+	PmergeMe() : _time(0.0),
+				 _result(Container()),
+				 _unsorted(Container()),
+				 _typeName("") {}
 
-	PmergeMe(const PmergeMe &copy)
+	PmergeMe(const PmergeMe &copy) : _time(copy.getTime()),
+									 _result(copy.getResult()),
+									 _unsorted(copy.getUnsorted()),
+									 _typeName(copy.getTypeName()) {}
+
+	// Operators
+	PmergeMe &operator=(const PmergeMe &assign)
 	{
-		(void)copy;
+		if (*this != assign)
+		{
+			_time = assign.getTime();
+			_result = assign.getResult();
+			_unsorted = assign.getUnsorted();
+			_typeName = assign.getTypeName();
+		}
+		return *this;
+	}
+
+	// Getters
+	Container getUnsorted() const
+	{
+		return _unsorted;
+	}
+
+	Container getResult() const
+	{
+		return _result;
+	}
+
+	double getTime() const
+	{
+		return _time;
+	}
+
+	std::string getTypeName() const
+	{
+		return _typeName;
 	}
 
 	void _getIntegerSequence(const char **argv)
@@ -107,185 +125,74 @@ private:
 		}
 	}
 
-	void _createPairs()
+	void _insertionSort(Container &container, int left, int right)
 	{
-		size_t size = _unsorted.size() / 2;
-		for (size_t i = 0; size--; i += 2)
-			_pairs.push_back(std::make_pair(_unsorted.at(i), _unsorted.at(i + 1)));
-	}
-
-	void _sortPairs()
-	{
-		size_t size = _pairs.size();
-		for (size_t i = 0; i < size; i++)
+		for (int i = left + 1; i <= right; i++)
 		{
-			if (_pairs.at(i).first < _pairs.at(i).second)
-				std::swap(_pairs.at(i).first, _pairs.at(i).second);
+			int key = container[i];
+			int j = i - 1;
+			while (j >= left && container[j] > key)
+			{
+				container[j + 1] = container[j];
+				j = j - 1;
+			}
+			container[j + 1] = key;
 		}
 	}
 
-	void _merge(Pairs &pairs, int begin, int mid, int end)
+	void _merge(Container &container,
+				size_t left,
+				size_t mid,
+				size_t right)
 	{
-		size_t leftIndex;
-		size_t rightIndex;
-		size_t mergedIndex;
+		size_t n1 = mid - left + 1;
+		size_t n2 = right - mid;
+		Container leftContainer(n1);
+		Container rightContainer(n2);
 
-		Pairs leftPairs(pairs.begin() + begin, pairs.begin() + mid + 1);
-		Pairs rightPairs(pairs.begin() + mid + 1, pairs.begin() + end + 1);
+		for (size_t i = 0; i < n1; ++i)
+			leftContainer[i] = container[left + i];
+		for (size_t j = 0; j < n2; ++j)
+			rightContainer[j] = container[mid + 1 + j];
 
-		leftIndex = 0;
-		rightIndex = 0;
-		mergedIndex = begin;
-
-		while (leftIndex < leftPairs.size() && rightIndex < rightPairs.size())
+		size_t i = 0;
+		size_t j = 0;
+		size_t k = left;
+		for (; i < n1 && j < n2; ++k)
 		{
-			if (leftPairs[leftIndex].first <= rightPairs[rightIndex].first)
-			{
-				pairs[mergedIndex] = leftPairs[leftIndex];
-				leftIndex++;
-			}
+			if (leftContainer[i] <= rightContainer[j])
+				container[k] = leftContainer[i++];
+			else
+				container[k] = rightContainer[j++];
+		}
+		for (; i < n1; ++i, ++k)
+			container[k] = leftContainer[i];
+		for (; j < n2; ++j, ++k)
+			container[k] = rightContainer[j];
+	}
+
+	void _mergeSort(Container &container,
+					size_t left,
+					size_t right)
+	{
+		const int threshold = 32;
+		if (left < right)
+		{
+			if (right - left <= threshold)
+				_insertionSort(container, left, right);
 			else
 			{
-				pairs[mergedIndex] = rightPairs[rightIndex];
-				rightIndex++;
+				size_t mid = left + (right - left) / 2;
+				_mergeSort(container, left, mid);
+				_mergeSort(container, mid + 1, right);
+				_merge(container, left, mid, right);
 			}
-			mergedIndex++;
-		}
-		while (leftIndex < leftPairs.size())
-		{
-			pairs[mergedIndex] = leftPairs[leftIndex];
-			leftIndex++;
-			mergedIndex++;
-		}
-		while (rightIndex < rightPairs.size())
-		{
-			pairs[mergedIndex] = rightPairs[rightIndex];
-			rightIndex++;
-			mergedIndex++;
 		}
 	}
 
-	void _mergeSort(Pairs &pairs, int begin, int end)
+	void _mergeInsertionSort(Container &arr)
 	{
-		int mid;
-
-		if (begin >= end)
-			return;
-		mid = begin + (end - begin) / 2;
-		_mergeSort(pairs, begin, mid);
-		_mergeSort(pairs, mid + 1, end);
-		_merge(pairs, begin, mid, end);
-	}
-
-	void _createMainChainAndPend()
-	{
-		_mainChain.push_back(_pairs.at(0).second);
-		for (size_t i = 0; i < _pairs.size(); i++)
-		{
-			_mainChain.push_back(_pairs.at(i).first);
-			_pend.push_back(_pairs.at(i).second);
-		}
-	}
-
-	int _binarySearch(Container sequence, int target, int begin, int end)
-	{
-		int mid;
-
-		while (begin <= end)
-		{
-			mid = begin + (end - begin) / 2;
-			if (target == sequence.at(mid))
-				return (mid);
-			if (target > sequence.at(mid))
-				begin = mid + 1;
-			else
-				end = mid - 1;
-		}
-		if (target > sequence.at(mid))
-			return (mid + 1);
-		else
-			return (mid);
-	}
-
-	void _generateJacobInsertionSequence()
-	{
-		size_t size;
-		size_t jcobstalIndex;
-		int index;
-
-		size = _pend.size();
-		index = 3;
-
-		while ((jcobstalIndex = _jacobsthal(index)) < size - 1)
-		{
-			_jacobSequence.push_back(jcobstalIndex);
-			index++;
-		}
-	}
-
-	int _jacobsthal(int n)
-	{
-		if (n == 0)
-			return (0);
-		if (n == 1)
-			return (1);
-		return (_jacobsthal(n - 1) + 2 * _jacobsthal(n - 2));
-	}
-
-	void _generatPositions()
-	{
-		size_t val;
-		size_t pos;
-		size_t lastPos;
-
-		if (_pend.empty())
-			return;
-		_generateJacobInsertionSequence();
-		lastPos = 1;
-		val = 1;
-		while (!_jacobSequence.empty())
-		{
-			val = _jacobSequence.front();
-
-			_jacobSequence.erase(_jacobSequence.begin());
-			_positions.push_back(val);
-
-			pos = val - 1;
-			while (pos > lastPos)
-			{
-				_positions.push_back(pos);
-				pos--;
-			}
-			lastPos = val;
-		}
-		while (val++ < _pend.size())
-			_positions.push_back(val);
-	}
-
-	void _insertToMainChain()
-	{
-		size_t pos;
-		int target;
-		size_t endPos;
-		size_t addedCount = 0;
-
-		_generatPositions();
-
-		for (size_t i = 0; i < _positions.size(); ++i)
-		{
-			target = _pend.at(_positions[i] - 1);
-			endPos = _positions[i] + addedCount;
-			pos = _binarySearch(_mainChain, target, 0, endPos);
-			_mainChain.insert(_mainChain.begin() + pos, target);
-			addedCount++;
-		}
-
-		if (_unsorted.size() % 2 != 0)
-		{
-			target = _unsorted.at(_unsorted.size() - 1);
-			pos = _binarySearch(_mainChain, target, 0, _mainChain.size() - 1);
-			_mainChain.insert(_mainChain.begin() + pos, target);
-		}
+		_mergeSort(arr, 0, arr.size() - 1);
 	}
 };
 
