@@ -7,6 +7,7 @@
 #include <map>
 #include <fstream>
 #include <iomanip>
+#include <cstring>
 
 class BitcoinExchange
 {

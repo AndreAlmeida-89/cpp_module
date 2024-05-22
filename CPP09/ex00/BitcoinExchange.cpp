@@ -40,6 +40,7 @@ void BitcoinExchange::calculate(const std::string &inputFileName)
 			{
 				tm date;
 				float ammount;
+				memset(&date, 0, sizeof(date));
 				char *next = strptime(line.c_str(), "%Y-%m-%d | ", &date);
 				time_t time = mktime(&date);
 				if (!next || time == -1 || sscanf(next, "%f", &ammount) != 1)
@@ -77,6 +78,7 @@ const BitcoinExchange::Map BitcoinExchange::_parseDataBase()
 		{
 			tm date;
 			float value;
+			memset(&date, 0, sizeof(date));
 			char *next = strptime(line.c_str(), "%Y-%m-%d,", &date);
 			time_t time = mktime(&date);
 			if (next && sscanf(next, "%f", &value) == 1)
