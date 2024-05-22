@@ -39,11 +39,11 @@ public:
 	void printInfo()
 	{
 		std::cout << "Before: ";
-		for (unsigned int i = 0; i < _unsorted.size(); i++)
+		for (size_t i = 0; i < _unsorted.size(); i++)
 			std::cout << _unsorted.at(i) << " ";
 		std::cout << std::endl;
 		std::cout << "After: ";
-		for (unsigned int i = 0; i < _result.size(); i++)
+		for (size_t i = 0; i < _result.size(); i++)
 			std::cout << _result.at(i) << " ";
 		std::cout << std::endl;
 	}
@@ -125,7 +125,9 @@ private:
 		}
 	}
 
-	void _insertionSort(Container &container, int left, int right)
+	void _insertionSort(Container &container,
+						int left,
+						int right)
 	{
 		for (int i = left + 1; i <= right; i++)
 		{
