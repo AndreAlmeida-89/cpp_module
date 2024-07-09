@@ -25,5 +25,8 @@ int main()
 		delete b;
 		std::cout << std::endl;
 	}
+	// {
+	// 	AAnimal a;
+	// }
 	return 0;
 }

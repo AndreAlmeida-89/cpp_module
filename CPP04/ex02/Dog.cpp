@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:43 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 23:18:50 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:41:41 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ Dog::Dog(const Dog &copy)
 {
 	std::cout << "\e[0;33mCopy Constructor called of Dog\e[0m" << std::endl;
 	_type = copy.getType();
+	_brain = new Brain(copy.getBrain());
 }
+
 
 // Destructor
 Dog::~Dog()
@@ -38,6 +40,7 @@ Dog &Dog::operator=(const Dog &assign)
 {
 	std::cout << "\e[0;33mCopy Operator called of Dog\e[0m" << std::endl;
 	_type = assign.getType();
+	_brain = new Brain(assign.getBrain());
 	return *this;
 }
 
@@ -45,4 +48,10 @@ Dog &Dog::operator=(const Dog &assign)
 void Dog::makeSound() const
 {
 	std::cout << "\e[0;32mDog says: \"Woof Woof\"\e[0m" << std::endl;
+}
+
+
+const Brain &Dog::getBrain() const
+{
+	return (*_brain);
 }

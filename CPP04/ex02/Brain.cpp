@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:43 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/24 21:50:01 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:30:02 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ Brain::Brain()
 Brain::Brain(const Brain &copy)
 {
 	std::cout << "\e[0;33mCopy Constructor called of Brain\e[0m" << std::endl;
-	this->operator=(copy);
+	for (int i = 0; i < NB_OF_IDEAS; i++)
+		ideas[i] = copy.getIdea(i);
 }
 
 // Destructor
