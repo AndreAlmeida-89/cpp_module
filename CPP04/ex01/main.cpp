@@ -23,5 +23,11 @@ int main()
 		delete b;
 		std::cout << std::endl;
 	}
+	{
+		Dog basic;
+		{
+			Dog temp = basic;
+		}
+	}
 	return 0;
 }

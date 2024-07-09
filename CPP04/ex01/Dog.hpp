@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:53 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 15:49:08 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:31:10 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ public:
 	// Constructors
 	Dog();
 	Dog(const Dog &copy);
-	Dog(const std::string &type);
 
 	// Destructor
 	~Dog();
 
 	// Operators
 	Dog &operator=(const Dog &assign);
+
+	const Brain &getBrain() const;
 
 private:
 	Brain *_brain;

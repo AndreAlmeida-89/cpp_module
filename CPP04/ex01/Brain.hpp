@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:16:28 by andde-so          #+#    #+#             */
-/*   Updated: 2023/10/21 14:32:23 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:30:52 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,5 @@ public:
 private:
 	std::string ideas[NB_OF_IDEAS];
 };
-
-// Stream operators
-std::ostream &operator<<(std::ostream &stream, const Brain &object);
 
 #endif
