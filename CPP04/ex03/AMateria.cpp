@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:37:18 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 22:38:05 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:59:33 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ AMateria::AMateria(const AMateria &copy)
 	std::cout << "\e[0;33mCopy Constructor called of AMateria\e[0m" << std::endl;
 }
 
-AMateria::AMateria(const std::string &_type) : _type(_type)
+AMateria::AMateria(const std::string &type) : _type(type)
 {
 	std::cout << "\e[0;33mFields Constructor called of AMateria\e[0m" << std::endl;
 }
@@ -47,4 +47,9 @@ AMateria &AMateria::operator=(const AMateria &assign)
 std::string const &AMateria::getType() const
 {
 	return _type;
+}
+
+void AMateria::use(ICharacter &target)
+{
+	(void)target;
 }

@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:45:17 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 22:45:18 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:11:39 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,12 @@ Cure & Cure::operator=(const Cure &assign)
 	return *this;
 }
 
+AMateria *Cure::clone() const
+{
+	return nullptr;
+}
+
+void Cure::use(ICharacter &target)
+{
+	(void)target;
+}

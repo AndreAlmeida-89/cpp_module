@@ -6,7 +6,7 @@
 #    By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/04 11:54:15 by andde-so          #+#    #+#              #
-#    Updated: 2023/11/25 23:01:48 by andde-so         ###   ########.fr        #
+#    Updated: 2024/07/09 12:01:04 by andde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,11 @@ NAME	= interface_and_recap
 
 SRC		=	main.cpp 		\
 			AMateria.cpp	\
-			ICharacter.cpp	\
 			Character.cpp	\
-			IMateriaSource.cpp	\
-			MateriaSource.cpp
+			MateriaSource.cpp \
+			Ice.cpp \
+			Cure.cpp \
+
 
 OBJ		= $(SRC:%.cpp=%.o)
 

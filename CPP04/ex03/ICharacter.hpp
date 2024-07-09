@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:37:10 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 22:39:24 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:59:08 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <iostream>
 #include <string>
+#include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

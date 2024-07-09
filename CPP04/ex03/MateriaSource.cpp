@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:58:15 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 22:58:16 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:05:59 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,15 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &assign)
 {
 	(void)assign;
 	return *this;
+}
+
+void MateriaSource::learnMateria(AMateria *m)
+{
+	(void)m;
+}
+
+AMateria *MateriaSource::createMateria(std::string const &type)
+{
+	(void)type;
+	return nullptr;
 }

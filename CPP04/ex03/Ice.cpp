@@ -6,14 +6,14 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:45:15 by andde-so          #+#    #+#             */
-/*   Updated: 2023/11/25 22:45:16 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:04:43 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
 // Constructors
-Ice::Ice()
+Ice::Ice() : AMateria("ice")
 {
 	std::cout << "\e[0;33mDefault Constructor called of Ice\e[0m" << std::endl;
 }
@@ -39,3 +39,12 @@ Ice & Ice::operator=(const Ice &assign)
 	return *this;
 }
 
+AMateria *Ice::clone() const
+{
+	return nullptr;
+}
+
+void Ice::use(ICharacter &target)
+{
+	(void)target;
+}
