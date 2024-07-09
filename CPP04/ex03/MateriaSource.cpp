@@ -6,44 +6,71 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:58:15 by andde-so          #+#    #+#             */
-/*   Updated: 2024/07/09 12:05:59 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:44:51 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
 // Constructors
-MateriaSource::MateriaSource()
+MateriaSource::MateriaSource() : _inventoryCount(0)
 {
-	std::cout << "\e[0;33mDefault Constructor called of MateriaSource\e[0m" << std::endl;
 }
 
 MateriaSource::MateriaSource(const MateriaSource &copy)
 {
-	(void)copy;
-	std::cout << "\e[0;33mCopy Constructor called of MateriaSource\e[0m" << std::endl;
+	for (size_t i = 0; i < _inventoryCapacity; i++)
+	{
+		_inventory[i] = copy.getMateria(i);
+		if (_inventory[i] != nullptr)
+			_inventoryCount++;
+	}
 }
 
 // Destructor
 MateriaSource::~MateriaSource()
 {
-	std::cout << "\e[0;31mDestructor called of MateriaSource\e[0m" << std::endl;
+	for (size_t i = 0; i < _inventoryCount; i++)
+	{
+		delete _inventory[i];
+		_inventory[i] = nullptr;
+	}
 }
 
 // Operators
 MateriaSource &MateriaSource::operator=(const MateriaSource &assign)
 {
-	(void)assign;
+	for (size_t i = 0; i < _inventoryCapacity; i++)
+	{
+		_inventory[i] = assign.getMateria(i);
+		if (_inventory[i] != nullptr)
+			_inventoryCount++;
+	}
 	return *this;
 }
 
 void MateriaSource::learnMateria(AMateria *m)
 {
-	(void)m;
+	if (_inventoryCount < _inventoryCapacity)
+	{
+		_inventory[_inventoryCount] = m;
+		_inventoryCount++;
+	}
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)
 {
-	(void)type;
-	return nullptr;
+	for (size_t i = 0; i < _inventoryCount; i++)
+	{
+		if (getMateria(i)->getType() == type)
+			return (_inventory[i]->clone());
+	}
+	return (nullptr);
+}
+
+AMateria *MateriaSource::getMateria(size_t index) const
+{
+	if (index < _inventoryCount)
+		return (_inventory[index]);
+	return (nullptr);
 }

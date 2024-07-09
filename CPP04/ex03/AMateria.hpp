@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 22:37:15 by andde-so          #+#    #+#             */
-/*   Updated: 2024/07/09 12:01:33 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:27:12 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	AMateria(std::string const &type);
 
 	// Destructor
-	~AMateria();
+	virtual ~AMateria();
 
 	// Operators
 	AMateria &operator=(const AMateria &assign);
