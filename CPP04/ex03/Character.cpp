@@ -11,13 +11,13 @@ Character::Character(const Character &copy) : _name(copy.getName())
 	for (size_t i = 0; i < _unequipedInventoryCapacity; i++)
 	{
 		_unequipedInventory[i] = copy.getUnusedMateria(i);
-		if (_unequipedInventory[i] != nullptr)
+		if (_unequipedInventory[i] != NULL)
 			_unequipedInventoryCount++;
 	}
 	for (size_t i = 0; i < _inventoryCapacity; i++)
 	{
 		_inventory[i] = copy.getMateria(i);
-		if (_inventory[i] != nullptr)
+		if (_inventory[i] != NULL)
 			_inventoryCount++;
 	}
 }
@@ -33,18 +33,18 @@ Character::~Character()
 {
 	for (size_t i = 0; i < _inventoryCapacity; i++)
 	{
-		if (_inventory[i] == nullptr)
+		if (_inventory[i] == NULL)
 		{
 			delete _inventory[i];
-			_inventory[i] = nullptr;
+			_inventory[i] = NULL;
 		}
 	}
 	for (size_t i = 0; i < _unequipedInventoryCount; i++)
 	{
-		if (_unequipedInventory[i] == nullptr)
+		if (_unequipedInventory[i] == NULL)
 		{
 			delete _unequipedInventory[i];
-			_unequipedInventory[i] = nullptr;
+			_unequipedInventory[i] = NULL;
 		}
 	}
 }
@@ -56,13 +56,13 @@ Character &Character::operator=(const Character &assign)
 	for (size_t i = 0; i < _unequipedInventoryCapacity; i++)
 	{
 		_unequipedInventory[i] = assign.getUnusedMateria(i);
-		if (_unequipedInventory[i] != nullptr)
+		if (_unequipedInventory[i] != NULL)
 			_unequipedInventoryCount++;
 	}
 	for (size_t i = 0; i < _inventoryCapacity; i++)
 	{
 		_inventory[i] = assign.getMateria(i);
-		if (_inventory[i] != nullptr)
+		if (_inventory[i] != NULL)
 			_inventoryCount++;
 	}
 	return *this;
@@ -77,21 +77,21 @@ AMateria *Character::getMateria(size_t idx) const
 {
 	if ((size_t)idx < _inventoryCount)
 		return _inventory[idx];
-	return nullptr;
+	return NULL;
 }
 
 AMateria *Character::getUnusedMateria(size_t idx) const
 {
 	if (_unequipedInventoryCapacity < (size_t)idx)
 		return _unequipedInventory[idx];
-	return nullptr;
+	return NULL;
 }
 
 void Character::equip(AMateria *materia)
 {
 	for (size_t i = 0; i < _inventoryCapacity; i++)
 	{
-		if (_inventory[i] == nullptr)
+		if (_inventory[i] == NULL)
 		{
 			_inventory[i] = materia;
 			_inventoryCount++;
@@ -103,9 +103,9 @@ void Character::equip(AMateria *materia)
 void Character::unequip(int idx)
 {
 	AMateria *unequipedMateria = getMateria(idx);
-	if (unequipedMateria != nullptr)
+	if (unequipedMateria != NULL)
 	{
-		_inventory[idx] = nullptr;
+		_inventory[idx] = NULL;
 		_inventoryCount--;
 		if (_unequipedInventoryCount < _unequipedInventoryCapacity)
 		{
@@ -123,6 +123,6 @@ void Character::unequip(int idx)
 void Character::use(int idx, ICharacter &target)
 {
 	AMateria *materia = getMateria(idx);
-	if (materia != nullptr)
+	if (materia != NULL)
 		materia->use(target);
 }
