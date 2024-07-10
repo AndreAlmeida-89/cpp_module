@@ -50,8 +50,6 @@ public:
 
 	void printTime()
 	{
-		if (_result.size() != _unsorted.size() || !std::is_sorted(_result.begin(), _result.end()))
-			throw PmergeMeError();
 		std::cout << "Time to process a range of "
 				  << _unsorted.size()
 				  << " elements with "

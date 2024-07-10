@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:20:43 by andde-so          #+#    #+#             */
-/*   Updated: 2024/07/09 16:46:47 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:01:54 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Dog::Dog()
 	std::cout << "\e[0;33mDefault Constructor called of Dog\e[0m" << std::endl;
 }
 
-Dog::Dog(const Dog &copy)
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
 	std::cout << "\e[0;33mCopy Constructor called of Dog\e[0m" << std::endl;
 	_type = copy.getType();

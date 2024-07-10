@@ -6,7 +6,7 @@
 /*   By: andde-so <andde-so@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 11:23:17 by andde-so          #+#    #+#             */
-/*   Updated: 2024/07/09 16:49:19 by andde-so         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:02:29 by andde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Cat::Cat()
 	std::cout << "\e[0;33mDefault Constructor called of Cat\e[0m" << std::endl;
 }
 
-Cat::Cat(const Cat &copy)
+Cat::Cat(const Cat &copy) : Animal(copy)
 {
 	std::cout << "\e[0;33mCopy Constructor called of Cat\e[0m" << std::endl;
 	_type = copy.getType();
